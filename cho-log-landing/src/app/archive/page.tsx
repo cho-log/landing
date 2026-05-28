@@ -52,7 +52,7 @@ export default function ArchivePage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button href={LINKS.googleForm} external size="lg">
-              리드 신청하기 🟢
+              리드 신청하기
             </Button>
             <Button
               href={LINKS.discord}

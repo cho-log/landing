@@ -76,7 +76,7 @@ export function Header() {
           rel="noopener noreferrer"
           className="hidden md:block"
         >
-          <Button size="sm">리드 신청하기 🟢</Button>
+          <Button size="sm">리드 신청하기</Button>
         </a>
 
         {/* 햄버거 버튼 (모바일) */}
@@ -131,7 +131,7 @@ export function Header() {
               rel="noopener noreferrer"
             >
               <Button size="sm" className="w-full">
-                리드 신청하기 🟢
+                리드 신청하기
               </Button>
             </a>
           </div>

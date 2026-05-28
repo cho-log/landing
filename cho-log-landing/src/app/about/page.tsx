@@ -27,16 +27,16 @@ export default function AboutPage() {
     <>
       {/* ── 1. 히어로 ──────────────────────────────── */}
       <section className="bg-bg-surface py-24 md:py-32">
-        <div className="mx-auto max-w-3xl px-4 text-center md:px-6">
+        <div className="mx-auto max-w-3xl px-4 text-right md:px-6">
           <h1 className="text-5xl font-bold tracking-tight text-chorok-700 md:text-6xl">
             초록
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-text-secondary md:text-xl">
             함께 성장하는 개발자 커뮤니티
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-end gap-3">
             <Button href={LINKS.googleForm} external size="lg">
-              리드 신청하기 🟢
+              리드 신청하기
             </Button>
             <Button href={LINKS.discord} external variant="secondary" size="lg">
               디스코드 입장하기
@@ -65,7 +65,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button href={LINKS.googleForm} external size="lg">
-              리드 신청하기 🟢
+              리드 신청하기
             </Button>
             <Button href={LINKS.discord} external variant="secondary" size="lg">
               디스코드 입장 →

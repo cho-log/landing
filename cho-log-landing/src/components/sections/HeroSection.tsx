@@ -20,16 +20,16 @@ export function HeroSection() {
       />
 
       {/* 콘텐츠 */}
-      <div className="relative z-10 mx-auto max-w-3xl px-4 text-center text-white">
-        <h1 className="text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white">
+        <h1 className="text-6xl font-bold leading-tight tracking-tight md:text-7xl lg:text-8xl">
           배움에서 나눔으로
         </h1>
-        <p className="mt-5 text-base leading-relaxed text-white/75 md:text-lg">
+        <p className="mt-6 text-xl leading-relaxed text-white/75 md:text-2xl">
           좋은 교육 경험을 더 많은 사람에게 전하는 개발자 커뮤니티
         </p>
         <div className="mt-8">
           <Button href={GOOGLE_FORM_URL} external size="lg">
-            리드 신청하기 🟢
+            리드 신청하기
           </Button>
         </div>
       </div>
