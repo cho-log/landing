@@ -1,0 +1,100 @@
+/* Pretendard — CDN (next/font/local로 교체 시 이 줄 제거) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import "tailwindcss";
+
+/* ─── CSS Variables ─────────────────────────────────────────── */
+:root {
+  /* Brand primitives */
+  --chorok:       #16A34A; /* green-600 — 메인 초록 */
+  --chorok-light: #22C55E; /* green-500 */
+  --chorok-dark:  #15803D; /* green-700 */
+  --duo:          #7C3AED; /* violet-600 — 초록해듀오 🟣 */
+  --project:      #EA580C; /* orange-600 — 초록프로젝트 🟠 */
+
+  /* Semantic */
+  --bg-base:        #FAFAFA;
+  --bg-surface:     #FFFFFF;
+  --text-primary:   #111827;
+  --text-secondary: #6B7280;
+  --text-muted:     #9CA3AF;
+  --border:         #E5E7EB;
+  --border-focus:   #16A34A;
+}
+
+/* ─── Tailwind v4 Theme ─────────────────────────────────────── */
+@theme inline {
+  /* Fonts */
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ── Chorok (메인 초록 팔레트) ── */
+  --color-chorok-50:  #F0FDF4;
+  --color-chorok-100: #DCFCE7;
+  --color-chorok-200: #BBF7D0;
+  --color-chorok-300: #86EFAC;
+  --color-chorok-400: #4ADE80;
+  --color-chorok-500: #22C55E;
+  --color-chorok-600: #16A34A;
+  --color-chorok-700: #15803D;
+  --color-chorok-800: #166534;
+  --color-chorok-900: #14532D;
+  --color-chorok-950: #052E16;
+
+  /* ── Duo (보라 — 초록해듀오 🟣) ── */
+  --color-duo-100: #EDE9FE;
+  --color-duo-200: #DDD6FE;
+  --color-duo-300: #C4B5FD;
+  --color-duo-400: #A78BFA;
+  --color-duo-500: #8B5CF6;
+  --color-duo-600: #7C3AED;
+  --color-duo-700: #6D28D9;
+  --color-duo-900: #3B0764;
+
+  /* ── Project (주황 — 초록프로젝트 🟠) ── */
+  --color-project-100: #FFEDD5;
+  --color-project-200: #FED7AA;
+  --color-project-300: #FDBA74;
+  --color-project-400: #FB923C;
+  --color-project-500: #F97316;
+  --color-project-600: #EA580C;
+  --color-project-700: #C2410C;
+  --color-project-900: #7C2D12;
+
+  /* ── Semantic color aliases ── */
+  --color-brand:           var(--chorok);
+  --color-brand-light:     var(--chorok-light);
+  --color-brand-dark:      var(--chorok-dark);
+  --color-bg-base:         var(--bg-base);
+  --color-bg-surface:      var(--bg-surface);
+  --color-text-primary:    var(--text-primary);
+  --color-text-secondary:  var(--text-secondary);
+  --color-text-muted:      var(--text-muted);
+  --color-border:          var(--border);
+  --color-border-focus:    var(--border-focus);
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@theme inline {
+  --animate-scroll-left:  scroll-left 35s linear infinite;
+  --animate-scroll-right: scroll-right 35s linear infinite;
+}
+
+/* ─── Base Styles ───────────────────────────────────────────── */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: keep-all;
+}
