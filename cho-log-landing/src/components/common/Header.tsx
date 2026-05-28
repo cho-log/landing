@@ -56,28 +56,27 @@ export function Header() {
           초록
         </Link>
 
-        {/* 데스크톱 네비 */}
-        <nav className="hidden items-center gap-8 text-sm font-medium text-text-secondary md:flex">
-          {NAV_LINKS.map(({ label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              className="transition-colors hover:text-text-primary"
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* 데스크톱 CTA */}
-        <a
-          href={GOOGLE_FORM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:block"
-        >
-          <Button size="sm">리드 신청하기</Button>
-        </a>
+        {/* 데스크톱 네비 + CTA (오른쪽 정렬) */}
+        <div className="hidden items-center gap-8 md:flex">
+          <nav className="flex items-center gap-8 text-lg font-medium text-text-secondary">
+            {NAV_LINKS.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="transition-colors hover:text-text-primary"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <a
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="sm">리드 신청하기</Button>
+          </a>
+        </div>
 
         {/* 햄버거 버튼 (모바일) */}
         <button
