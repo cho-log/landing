@@ -46,19 +46,19 @@ export function Header() {
       }`}
     >
       {/* ── 데스크톱 / 기본 레이아웃 ── */}
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 md:px-6">
 
         {/* 로고 */}
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-chorok-700"
+          className="text-3xl font-bold tracking-tight text-chorok-700"
         >
           초록
         </Link>
 
         {/* 데스크톱 네비 + CTA (오른쪽 정렬) */}
         <div className="hidden items-center gap-8 md:flex">
-          <nav className="flex items-center gap-8 text-lg font-medium text-text-secondary">
+          <nav className="flex items-center gap-8 text-2xl font-medium text-text-secondary">
             {NAV_LINKS.map(({ label, href }) => (
               <Link
                 key={href}
@@ -74,7 +74,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button size="sm">리드 신청하기</Button>
+            <Button size="lg">리드 신청하기</Button>
           </a>
         </div>
 

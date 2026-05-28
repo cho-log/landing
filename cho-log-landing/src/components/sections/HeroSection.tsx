@@ -28,8 +28,8 @@ export function HeroSection() {
           좋은 교육 경험을 더 많은 사람에게 전하는 개발자 커뮤니티
         </p>
         <div className="mt-8">
-          <Button href={GOOGLE_FORM_URL} external size="lg">
-            리드 신청하기
+          <Button href={GOOGLE_FORM_URL} external size="lg" className="!rounded-2xl !text-xl !px-10 !h-14">
+            스터디 리드 신청하기
           </Button>
         </div>
       </div>
