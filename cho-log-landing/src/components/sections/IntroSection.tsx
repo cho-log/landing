@@ -46,10 +46,10 @@ export function IntroSection() {
             {/* 초록스터디 — 메인 카드 */}
             <div className="rounded-2xl bg-white p-8 shadow-xl md:p-10">
               <div className="flex flex-wrap items-center gap-3">
-                <span
-                  className="inline-block h-3 w-3 rounded-full bg-chorok-500"
-                  aria-hidden="true"
-                />
+                <span className="relative inline-flex h-3 w-3" aria-hidden="true">
+                  <span className="absolute -inset-0.5 inline-flex animate-ping rounded-full bg-chorok-400 opacity-75 [animation-duration:2s]" />
+                  <span className="relative inline-flex h-3 w-3 rounded-full bg-chorok-500" />
+                </span>
                 <h3 className="text-2xl font-bold text-text-primary">
                   초록스터디
                 </h3>
