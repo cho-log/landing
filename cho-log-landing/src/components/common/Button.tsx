@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
+import Link from "next/link";
 
 type Variant = "primary" | "secondary" | "ghost";
 type Size = "sm" | "md" | "lg";
@@ -31,7 +32,7 @@ const variantClass: Record<Variant, string> = {
   secondary:
     "border border-chorok-600 text-chorok-600 hover:bg-chorok-50 active:bg-chorok-100 focus-visible:ring-chorok-400",
   ghost:
-    "text-chorok-600 hover:text-chorok-700 focus-visible:ring-chorok-300",
+    "group/ghost text-chorok-600 hover:text-chorok-800 hover:font-semibold focus-visible:ring-chorok-300",
 };
 
 /* ── Size styles ─────────────────────────────────────────────── */
@@ -41,7 +42,6 @@ const sizeClass: Record<Size, string> = {
   lg: "h-12 px-6 text-base rounded-lg",
 };
 
-/* ghost는 패딩 없이 인라인 텍스트처럼 */
 const ghostOverride = "h-auto px-0 rounded-none";
 
 const baseClass =
@@ -68,31 +68,47 @@ export function Button(props: ButtonProps) {
     .filter(Boolean)
     .join(" ");
 
-  /* href가 있으면 <a> 태그 */
+  const content = (
+    <>
+      {children}
+      {isGhost && <span className="inline-block transition-transform duration-200 group-hover/ghost:translate-x-2" aria-hidden="true">→</span>}
+    </>
+  );
+
   if ("href" in props && props.href !== undefined) {
     const { href, external, ...anchorRest } = rest as Omit<AsAnchor, keyof BaseProps>;
+
+    /* 외부 링크: <a> 태그 */
+    if (external || href.startsWith("http") || href.startsWith("mailto:")) {
+      return (
+        <a
+          href={href}
+          className={computedClass}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+          {...anchorRest}
+        >
+          {content}
+        </a>
+      );
+    }
+
+    /* 내부 링크: next/link → basePath 자동 처리 */
     return (
-      <a
-        href={href}
-        className={computedClass}
-        {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-        {...anchorRest}
-      >
-        {children}
-        {isGhost && <span aria-hidden="true">→</span>}
-      </a>
+      <Link href={href} className={computedClass} {...(anchorRest as object)}>
+        {content}
+      </Link>
     );
   }
 
-  /* href 없으면 <button> 태그 */
+  /* href 없으면 <button> */
   return (
     <button
       type="button"
       className={computedClass}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
-      {children}
-      {isGhost && <span aria-hidden="true">→</span>}
+      {content}
     </button>
   );
 }

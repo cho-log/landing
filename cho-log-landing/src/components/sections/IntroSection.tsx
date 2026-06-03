@@ -44,7 +44,9 @@ export function IntroSection() {
             </div>
 
             {/* 초록스터디 — 메인 카드 */}
-            <div className="rounded-2xl bg-white p-8 shadow-xl md:p-10">
+            <div className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-shadow duration-300 hover:shadow-2xl md:p-10">
+              {/* 왼쪽 초록 세로선 — 위에서 아래로 */}
+              <span className="absolute left-0 top-0 h-0 w-1 rounded-full bg-gradient-to-b from-chorok-300 to-chorok-700 transition-all duration-500 group-hover:h-full" />
               <div className="flex flex-wrap items-center gap-3">
                 <span className="relative inline-flex h-3 w-3" aria-hidden="true">
                   <span className="absolute -inset-0.5 inline-flex animate-ping rounded-full bg-chorok-400 opacity-75 [animation-duration:2s]" />
