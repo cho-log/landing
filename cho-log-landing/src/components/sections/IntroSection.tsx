@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Button } from "@/src/components/common/Button";
 
 const SECONDARY_ACTIVITIES = [
@@ -7,35 +10,72 @@ const SECONDARY_ACTIVITIES = [
   { label: "밋업" },
 ];
 
+function useFadeIn() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("opacity-100", "translate-y-0");
+          el.classList.remove("opacity-0", "translate-y-8");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return ref;
+}
+
 export function IntroSection() {
+  const quoteRef = useFadeIn();
+  const studyRef = useFadeIn();
+  const activitiesRef = useFadeIn();
+
   return (
     <section className="bg-bg-base py-24">
       <div className="mx-auto max-w-4xl px-4 md:px-6">
 
         {/* 인용구 */}
-        <blockquote className="relative pl-0">
-          <span
-            className="block text-5xl leading-none text-chorok-500 select-none md:text-6xl"
-            aria-hidden="true"
-          >
-            &ldquo;
-          </span>
-          <p className="mt-2 text-xl leading-relaxed text-text-primary md:text-2xl">
-            좋은 교육 경험을 더 많은 사람에게 나누고 싶은 마음에서 시작했습니다.
-            <br />
-            <strong className="font-bold">
-              배움은 혼자보다 함께할 때 더 멀리 갑니다.
-            </strong>
-          </p>
-          <footer className="mt-4 text-lg text-text-muted md:text-xl">
-            — 브라운, 우아한테크코스 백엔드 코치
-          </footer>
-        </blockquote>
+        <div
+          ref={quoteRef}
+          className="translate-y-8 opacity-0 transition-all duration-700 ease-out"
+        >
+          <blockquote className="relative pl-0">
+            <span
+              className="block text-5xl leading-none text-chorok-500 select-none md:text-6xl"
+              aria-hidden="true"
+            >
+              &ldquo;
+            </span>
+            <p className="mt-2 text-xl leading-relaxed text-text-primary md:text-2xl">
+              좋은 교육 경험을 더 많은 사람에게 나누고 싶은 마음에서 시작했습니다.
+              <br />
+              <strong className="font-bold">
+                배움은 혼자보다 함께할 때 더 멀리 갑니다.
+              </strong>
+            </p>
+            <footer className="mt-4 text-lg text-text-muted md:text-xl">
+              — 브라운, 우아한테크코스 백엔드 코치
+            </footer>
+          </blockquote>
+        </div>
 
         <div className="mt-16 flex flex-col gap-16">
 
           {/* ── 상시 운영 ── */}
-          <div>
+          <div
+            ref={studyRef}
+            className="translate-y-8 opacity-0 transition-all duration-700 delay-150 ease-out"
+          >
             <div className="mb-6 flex items-center gap-4">
               <span className="shrink-0 text-sm font-medium text-text-muted">
                 상시 운영
@@ -71,7 +111,10 @@ export function IntroSection() {
           </div>
 
           {/* ── 함께 열리는 활동들 ── */}
-          <div>
+          <div
+            ref={activitiesRef}
+            className="translate-y-8 opacity-0 transition-all duration-700 delay-300 ease-out"
+          >
             <div className="mb-6 flex items-center gap-4">
               <span className="shrink-0 text-sm font-medium text-text-muted">
                 함께 열리는 활동들

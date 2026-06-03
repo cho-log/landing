@@ -5,7 +5,7 @@ const GOOGLE_FORM_URL = "https://forms.gle/REPLACE_ME";
 
 export function HeroSection() {
   return (
-    <section className="relative flex h-screen min-h-[600px] items-center justify-center overflow-hidden">
+    <section className="relative flex h-screen min-h-[600px] items-center justify-center">
 
       {/* 배경 이미지 — hero-bg 클래스로 나중에 교체 */}
       <div

@@ -2,54 +2,51 @@ import { Button } from "@/src/components/common/Button";
 
 type Status = "recruiting" | "closed" | "seasonal";
 
-const STATUS_CONFIG: Record<Status, { label: string; className: string }> = {
+const STATUS_CONFIG: Record<Status, { label: string; badgeClass: string }> = {
   recruiting: {
     label: "현재 모집 중",
-    className: "bg-chorok-100 text-chorok-700",
+    badgeClass: "border border-chorok-300 bg-chorok-50 text-chorok-700",
   },
   closed: {
     label: "현재 모집 마감",
-    className: "bg-gray-100 text-gray-500",
+    badgeClass: "border border-gray-300 bg-gray-50 text-gray-500",
   },
   seasonal: {
     label: "시즌제",
-    className: "bg-project-100 text-project-700",
+    badgeClass: "border border-project-300 bg-project-100 text-project-700",
   },
 };
 
 const CORE_ACTIVITIES = [
   {
-    emoji: "🟢",
     name: "초록스터디",
     status: "recruiting" as Status,
-    accentClass: "border-chorok-200 bg-white",
-    labelClass: "text-chorok-700",
+    dotColor: "bg-chorok-500",
+    topBorder: "border-t-chorok-500",
     what: "14주 단위 리드 중심 학습 모임",
     who: "배운 것을 전하고 싶은 리드 + 스터디원",
     features: ["검증된 운영 가이드", "코드 리뷰 문화"],
-    cta: { label: "리드 신청하기", href: "https://forms.gle/REPLACE_ME", external: true },
+    cta: { label: "리드 신청하기", href: "https://forms.gle/REPLACE_ME", external: true, variant: "primary" as const },
   },
   {
-    emoji: "🟣",
     name: "초록해듀오",
     status: "closed" as Status,
-    accentClass: "border-duo-200 bg-white",
-    labelClass: "text-duo-600",
+    dotColor: "bg-duo-500",
+    topBorder: "border-t-duo-500",
     what: "멘토-멘티 매칭 학습 모임",
     who: "1:1 밀도 있는 학습이 필요한 사람",
     features: ["멘토와 멘티 매칭", "자율적 운영"],
-    cta: null,
+    cta: { label: "다음 기수 알림 받기", href: "#", external: false, variant: "secondary" as const },
   },
   {
-    emoji: "🟠",
     name: "초록프로젝트",
     status: "seasonal" as Status,
-    accentClass: "border-project-200 bg-white",
-    labelClass: "text-project-600",
+    dotColor: "bg-project-500",
+    topBorder: "border-t-project-500",
     what: "실전 협업 팀 프로젝트",
     who: "학습한 것을 실제로 적용해보고 싶은 사람",
     features: ["팀 단위 운영"],
-    cta: null,
+    cta: { label: "시즌 공지 받기", href: "#", external: false, variant: "secondary" as const },
   },
 ];
 
@@ -74,44 +71,50 @@ export function ActivitiesSection() {
             return (
               <article
                 key={activity.name}
-                className={`flex flex-col rounded-2xl border p-6 shadow-sm ${activity.accentClass}`}
+                className={`flex flex-col rounded-2xl border-t-4 ${activity.topBorder} bg-white p-6 shadow-md`}
               >
                 {/* 헤더 */}
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className={`text-lg font-bold ${activity.labelClass}`}>
-                    {activity.emoji} {activity.name}
-                  </h3>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`inline-block h-3 w-3 rounded-full ${activity.dotColor}`}
+                      aria-hidden="true"
+                    />
+                    <h3 className="text-xl font-bold text-text-primary">
+                      {activity.name}
+                    </h3>
+                  </div>
                   <span
-                    className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${status.className}`}
+                    className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${status.badgeClass}`}
                   >
                     {status.label}
                   </span>
                 </div>
 
                 {/* 본문 */}
-                <dl className="mt-5 flex flex-col gap-4 text-sm">
+                <dl className="mt-6 flex flex-col gap-5 text-sm">
                   <div>
-                    <dt className="mb-1 text-xs font-semibold uppercase tracking-widest text-text-muted">
-                      무엇을
+                    <dt className="mb-1.5 flex items-center gap-1.5 text-xs text-text-muted">
+                      <span aria-hidden="true">◎</span> 무엇을
                     </dt>
-                    <dd className="text-text-primary">{activity.what}</dd>
+                    <dd className="font-semibold text-text-primary">{activity.what}</dd>
                   </div>
                   <div>
-                    <dt className="mb-1 text-xs font-semibold uppercase tracking-widest text-text-muted">
-                      누가
+                    <dt className="mb-1.5 flex items-center gap-1.5 text-xs text-text-muted">
+                      <span aria-hidden="true">👤</span> 누가
                     </dt>
-                    <dd className="text-text-primary">{activity.who}</dd>
+                    <dd className="font-semibold text-text-primary">{activity.who}</dd>
                   </div>
                   <div>
-                    <dt className="mb-1 text-xs font-semibold uppercase tracking-widest text-text-muted">
-                      특징
+                    <dt className="mb-1.5 flex items-center gap-1.5 text-xs text-text-muted">
+                      <span aria-hidden="true">☆</span> 특징
                     </dt>
                     <dd>
-                      <ul className="flex flex-wrap gap-x-1 gap-y-1.5">
+                      <ul className="flex flex-wrap gap-2">
                         {activity.features.map((f) => (
                           <li
                             key={f}
-                            className="rounded-md bg-bg-base px-2 py-0.5 text-xs text-text-secondary ring-1 ring-border"
+                            className="rounded-full border border-border bg-bg-base px-3 py-1 text-xs font-medium text-text-secondary"
                           >
                             {f}
                           </li>
@@ -122,18 +125,17 @@ export function ActivitiesSection() {
                 </dl>
 
                 {/* CTA */}
-                {activity.cta && (
-                  <div className="mt-auto pt-6">
-                    <Button
-                      href={activity.cta.href}
-                      external={activity.cta.external}
-                      size="sm"
-                      className="w-full"
-                    >
-                      {activity.cta.label}
-                    </Button>
-                  </div>
-                )}
+                <div className="mt-auto pt-6">
+                  <Button
+                    href={activity.cta.href}
+                    external={activity.cta.external}
+                    variant={activity.cta.variant}
+                    size="lg"
+                    className="w-full"
+                  >
+                    {activity.cta.label}
+                  </Button>
+                </div>
               </article>
             );
           })}
