@@ -83,7 +83,7 @@ export function IntroSection() {
               {SECONDARY_ACTIVITIES.map(({ label }) => (
                 <span
                   key={label}
-                  className="inline-flex items-center rounded-full border border-border bg-white px-4 py-1.5 text-sm font-medium text-text-primary"
+                  className="inline-flex items-center rounded-full border border-border bg-white px-4 py-1.5 text-sm font-medium text-text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-chorok-700 hover:bg-chorok-700 hover:text-white hover:shadow-lg"
                 >
                   {label}
                 </span>
