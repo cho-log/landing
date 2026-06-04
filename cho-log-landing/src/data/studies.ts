@@ -2,17 +2,6 @@ import type { Study } from "@/src/types";
 
 export const studies: Study[] = [
   {
-    id: "greedy-7",
-    name: "그리디 알고리즘 스터디",
-    season: 7,
-    duration: "2023.03 – 2023.06",
-    leadCount: 2,
-    memberCount: 12,
-    tags: ["알고리즘", "그리디", "코드리뷰"],
-    retrospectiveUrl: "https://REPLACE_ME/greedy-7-retro",
-    githubUrl: "https://github.com/REPLACE_ME/greedy-7",
-  },
-  {
     id: "scg-1",
     name: "스프링 코어 가이드 스터디",
     season: 1,
@@ -35,17 +24,6 @@ export const studies: Study[] = [
     githubUrl: "https://github.com/REPLACE_ME/scg-2",
   },
   {
-    id: "cs-fundamental-3",
-    name: "CS 기초 스터디",
-    season: 3,
-    duration: "2024.03 – 2024.06",
-    leadCount: 3,
-    memberCount: 15,
-    tags: ["CS", "네트워크", "운영체제", "데이터베이스"],
-    retrospectiveUrl: "https://REPLACE_ME/cs-3-retro",
-    githubUrl: "https://github.com/REPLACE_ME/cs-3",
-  },
-  {
     id: "kotlin-1",
     name: "코틀린 인 액션 스터디",
     season: 1,
@@ -55,16 +33,5 @@ export const studies: Study[] = [
     tags: ["Kotlin", "함수형", "코드리뷰"],
     retrospectiveUrl: "https://REPLACE_ME/kotlin-1-retro",
     githubUrl: "https://github.com/REPLACE_ME/kotlin-1",
-  },
-  {
-    id: "system-design-1",
-    name: "가상 면접 사례로 배우는 대규모 시스템 설계",
-    season: 1,
-    duration: "2024.11 – 2025.02",
-    leadCount: 2,
-    memberCount: 11,
-    tags: ["시스템 설계", "아키텍처", "인터뷰"],
-    retrospectiveUrl: "https://REPLACE_ME/system-design-1-retro",
-    githubUrl: "https://github.com/REPLACE_ME/system-design-1",
   },
 ];

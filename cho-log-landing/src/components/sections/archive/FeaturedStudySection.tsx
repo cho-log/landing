@@ -14,17 +14,6 @@ interface FeaturedStudy {
 
 const FEATURED: FeaturedStudy[] = [
   {
-    id: "greedy",
-    name: "그리디 알고리즘 스터디",
-    tagline: "교내 개발 생태계에 선한 영향력을",
-    weeks: 15,
-    leadCount: 4,
-    memberCount: 6,
-    tags: ["알고리즘", "그리디", "코드리뷰"],
-    retrospectiveUrl: "https://REPLACE_ME/greedy-retro",
-    githubUrl: "https://github.com/REPLACE_ME/greedy",
-  },
-  {
     id: "scg",
     name: "스프링 코어 가이드 스터디",
     tagline: "스프링을 깊게, 함께",

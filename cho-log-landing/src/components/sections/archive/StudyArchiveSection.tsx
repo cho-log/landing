@@ -5,22 +5,20 @@ import { studies } from "@/src/data/studies";
 import type { Study } from "@/src/types";
 
 /* ── 타입 ────────────────────────────────────────────────────── */
-type FilterTab = "전체" | "백엔드" | "프론트엔드" | "CS" | "기타";
+type FilterTab = "전체" | "백엔드" | "프론트엔드";
 type SortOrder = "latest" | "season";
 
-const FILTER_TABS: FilterTab[] = ["전체", "백엔드", "프론트엔드", "CS", "기타"];
+const FILTER_TABS: FilterTab[] = ["전체", "백엔드", "프론트엔드"];
 
 /* ── 카테고리 분류 ───────────────────────────────────────────── */
 const BACKEND_TAGS  = new Set(["spring", "java", "kotlin", "oop", "함수형", "시스템 설계", "아키텍처"]);
 const FRONTEND_TAGS = new Set(["react", "typescript", "javascript", "next.js", "css", "vue"]);
-const CS_TAGS       = new Set(["cs", "알고리즘", "그리디", "네트워크", "운영체제", "데이터베이스", "인터뷰"]);
 
 function getCategory(study: Study): FilterTab {
   const lower = study.tags.map((t) => t.toLowerCase());
-  if (lower.some((t) => CS_TAGS.has(t)))       return "CS";
   if (lower.some((t) => BACKEND_TAGS.has(t)))  return "백엔드";
   if (lower.some((t) => FRONTEND_TAGS.has(t))) return "프론트엔드";
-  return "기타";
+  return "백엔드";
 }
 
 /* ── duration 파싱 "2024.03 – 2024.06" ──────────────────────── */
