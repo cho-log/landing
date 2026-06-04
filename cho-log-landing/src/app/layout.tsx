@@ -3,8 +3,7 @@ import "./globals.css";
 import { Header } from "@/src/components/common/Header";
 import { Footer } from "@/src/components/common/Footer";
 
-// TODO: 실제 도메인으로 교체
-const SITE_URL = "https://chorok.dev";
+const SITE_URL = "https://cho-log.github.io/landing";
 const OG_IMAGE = `${SITE_URL}/og-image.png`; // public/og-image.png 파일 필요
 
 export const metadata: Metadata = {
