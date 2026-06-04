@@ -34,7 +34,9 @@ function parseDuration(duration: string) {
 /* ── StudyCard ───────────────────────────────────────────────── */
 function StudyCard({ study }: { study: Study }) {
   return (
-    <article className="flex flex-col gap-4 rounded-2xl border border-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+    <article className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-xl">
+      {/* 왼쪽 초록 세로선 */}
+      <span className="absolute left-0 top-0 h-0 w-1 rounded-full bg-gradient-to-b from-chorok-300 to-chorok-700 transition-all duration-500 group-hover:h-full" />
       {/* 헤더 */}
       <div className="flex items-start justify-between gap-2">
         <div>
