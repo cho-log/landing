@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./Button";
 
@@ -46,12 +47,23 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 md:px-6">
-
-        <Link
-          href="/"
-          className="text-3xl font-bold tracking-tight text-primary"
-        >
-          초록
+        <Link href="/" aria-label="초록 홈" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="초록"
+            width={128}
+            height={128}
+            priority
+            className="hidden h-16 w-auto md:block"
+          />
+          <Image
+            src="/logo-square.png"
+            alt="초록"
+            width={112}
+            height={112}
+            priority
+            className="block h-14 w-auto md:hidden"
+          />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -66,11 +78,7 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <a
-            href={GOOGLE_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">
             <Button size="lg">리드 신청하기</Button>
           </a>
         </div>
@@ -104,7 +112,9 @@ export function Header() {
       <div
         id="mobile-menu"
         className={`overflow-hidden border-t border-outline-variant bg-surface-container-lowest transition-all duration-200 md:hidden ${
-          menuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+          menuOpen
+            ? "max-h-64 opacity-100"
+            : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
         <nav className="flex flex-col gap-1 px-4 py-3">
@@ -119,11 +129,7 @@ export function Header() {
             </Link>
           ))}
           <div className="mt-2 border-t border-outline-variant pt-3 pb-1">
-            <a
-              href={GOOGLE_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="w-full">
                 리드 신청하기
               </Button>
