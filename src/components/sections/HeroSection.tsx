@@ -27,7 +27,7 @@ export function HeroSection() {
           배움에서 나눔으로
         </h1>
         <p className="mt-6 text-xl leading-relaxed text-white/75 md:text-2xl">
-          좋은 교육 경험을 더 많은 사람에게 전하는 개발자 커뮤니티
+          성장과 나눔으로 함께하는 개발자 커뮤니티
         </p>
         <div className="mt-8">
           <Button
@@ -40,6 +40,28 @@ export function HeroSection() {
           </Button>
         </div>
       </div>
+
+      {/* 하단 스크롤 유도 화살표 */}
+      <a
+        href="#intro"
+        aria-label="다음 섹션으로 스크롤"
+        className="absolute bottom-32 left-1/2 z-10 -translate-x-1/2 text-white/70 transition-colors hover:text-white"
+      >
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="animate-bounce"
+          aria-hidden="true"
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </a>
     </section>
   );
 }
