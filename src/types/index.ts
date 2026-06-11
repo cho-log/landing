@@ -19,10 +19,12 @@ export interface Lead {
   githubUrl?: string;
 }
 
+export type TestimonialRole = "스터디 리드" | "스터디원" | "리뷰어";
+
 export interface Testimonial {
   id: string;
-  content: string;     // 전체 후기 텍스트
-  excerpt: string;     // 카드 미리보기용 요약 (1~2문장)
-  authorName: string;
-  studyName: string;
+  text: string;          // 후기 본문
+  name: string;          // 이름
+  affiliation: string;   // 소속 (예: "그리디", "SCG")
+  role: TestimonialRole;
 }

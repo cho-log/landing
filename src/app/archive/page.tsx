@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 import { FeaturedStudySection } from "@/src/components/sections/archive/FeaturedStudySection";
 import { StudyArchiveSection } from "@/src/components/sections/archive/StudyArchiveSection";
-import { LeadReviewSection } from "@/src/components/sections/archive/LeadReviewSection";
+import { TestimonialArchiveSection } from "@/src/components/sections/archive/TestimonialArchiveSection";
 import { LeadListSection } from "@/src/components/sections/archive/LeadListSection";
 
 // TODO: 실제 링크로 교체
@@ -32,8 +32,8 @@ export default function ArchivePage() {
       {/* 2. 전체 스터디 아카이브 (필터 + 정렬) */}
       <StudyArchiveSection />
 
-      {/* 3. 리드 회고 큐레이션 */}
-      <LeadReviewSection />
+      {/* 3. 후기 모음 */}
+      <TestimonialArchiveSection />
 
       {/* 4. 역대 리드 목록 */}
       <LeadListSection />

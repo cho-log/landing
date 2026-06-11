@@ -1,123 +1,150 @@
-const ROW_1 = [
-  {
-    text: "14주 동안 매주 코드리뷰를 받으면서 처음으로 '잘 짜는 코드'가 뭔지 감이 왔어요. 혼자였다면 절대 몰랐을 것들을 배웠습니다.",
-    name: "김민준",
-    study: "초록스터디 7기",
-  },
-  {
-    text: "커리큘럼이 체계적이라 방향을 잃지 않고 끝까지 완주할 수 있었어요. 팀원들이랑 같이 성장하는 느낌이 정말 좋았습니다.",
-    name: "이서연",
-    study: "초록스터디 9기",
-  },
-  {
-    text: "PR을 올리고 피드백 받는 과정이 처음엔 어색했는데, 지금은 그 문화가 너무 익숙해졌어요. 실무에 바로 써먹고 있습니다.",
-    name: "박지후",
-    study: "초록스터디 11기",
-  },
-  {
-    text: "스터디 리드로 시작해서 지금은 사이드 프로젝트까지 같이 하는 동료들이 생겼어요. 초록이 제 개발 커리어의 터닝포인트였습니다.",
-    name: "최수아",
-    study: "초록스터디 13기",
-  },
-];
+"use client";
 
-const ROW_2 = [
-  {
-    text: "CS 스터디라고 해서 딱딱할 줄 알았는데, 실제 코드에 적용하면서 배우니까 훨씬 재미있었어요. 매주 기대됐습니다.",
-    name: "정예준",
-    study: "초록스터디 8기",
-  },
-  {
-    text: "취업 준비하면서 병행했는데, 오히려 초록 덕분에 꾸준히 공부할 수 있었어요. 같이 준비하는 동료가 생긴 게 제일 컸습니다.",
-    name: "강하은",
-    study: "초록스터디 10기",
-  },
-  {
-    text: "코드리뷰 받을 때마다 '이런 관점도 있구나' 하고 시야가 넓어지는 느낌이었어요. 단순 인풋이 아니라 진짜 성장이었습니다.",
-    name: "오도윤",
-    study: "초록스터디 12기",
-  },
-  {
-    text: "14주가 끝나고도 스터디원들이랑 계속 연락하고 있어요. 개발 커뮤니티에서 이런 관계가 생길 줄은 몰랐어요.",
-    name: "윤시우",
-    study: "초록스터디 14기",
-  },
-];
+import { useEffect, useRef, useSyncExternalStore } from "react";
+import Link from "next/link";
+import { Button } from "@/src/components/common/Button";
+import type { Testimonial } from "@/src/types";
+import { testimonials } from "@/src/data/testimonials";
+import { getDailySeed, seededShuffle } from "@/src/lib/dailySeed";
 
-/* ── 카드 ─────────────────────────────────────────────────────── */
-function TestimonialCard({
-  text,
-  name,
-  study,
-}: {
-  text: string;
-  name: string;
-  study: string;
-}) {
-  return (
-    <figure
-      className="
-        w-[280px] shrink-0 rounded-lg border border-outline-variant bg-surface-container-lowest p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)]
-        sm:w-72 md:w-80
-        [scroll-snap-align:start]
-      "
-    >
-      <blockquote className="text-sm leading-relaxed text-on-surface-variant">
-        "{text}"
-      </blockquote>
-      <figcaption className="mt-5 flex items-center gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary-container text-sm font-bold text-on-secondary-container">
-          {name[0]}
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-on-surface">{name}</p>
-          <p className="text-xs text-outline">{study}</p>
-        </div>
-      </figcaption>
-    </figure>
+const FEATURED_COUNT = 8;
+const AUTO_SCROLL_PX_PER_FRAME = 0.5; // ≈ 30px/sec at 60fps
+const DRAG_THRESHOLD_PX = 5;
+
+/* hydration mismatch 방지용 — 서버는 false, 클라이언트는 마운트 직후 true */
+const subscribe = () => () => {};
+function useIsClient(): boolean {
+  return useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
   );
 }
 
-/* ── 스크롤 트랙 ───────────────────────────────────────────────── */
-function ScrollTrack({
-  items,
-  direction,
-}: {
-  items: typeof ROW_1;
-  direction: "left" | "right";
-}) {
-  // 데스크톱: 아이템 복제 → seamless CSS animation
-  // 모바일: 복제 없이 native scroll
-  const doubled = [...items, ...items];
-  const animClass =
-    direction === "left" ? "md:animate-scroll-left" : "md:animate-scroll-right";
-
+/* ── 카드 ─────────────────────────────────────────────────────── */
+function TestimonialCard({ text, name, affiliation, role }: Testimonial) {
   return (
-    /*
-     * 모바일: overflow-x-auto + scroll-snap → 터치 스와이프
-     * 데스크톱(md+): overflow-hidden + CSS animation (group-hover 일시정지)
-     */
-    <div
+    <Link
+      href="/archive#testimonials"
+      draggable={false}
       className="
-        group
-        overflow-x-auto scroll-smooth
-        [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
-        [scroll-snap-type:x_mandatory] px-4
-        md:overflow-hidden md:px-0
-        md:[scroll-snap-type:none]
-        md:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
+        group/card relative flex h-[320px] w-[320px] shrink-0 flex-col overflow-hidden rounded-2xl
+        bg-surface-container-lowest p-6
+        shadow-[0_4px_24px_rgba(0,0,0,0.04)]
+        transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)]
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+        md:w-[360px]
       "
     >
-      <div
-        className={`
-          flex gap-4
-          [width:max-content]
-          ${animClass}
-          md:group-hover:[animation-play-state:paused]
-        `}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-1 -top-4 select-none font-serif text-[88px] leading-none text-primary/10"
       >
+        “
+      </span>
+      <blockquote className="line-clamp-8 whitespace-pre-line text-[15px] leading-relaxed text-on-surface-variant">
+        {text}
+      </blockquote>
+      <div className="mt-auto border-t border-outline-variant/60 pt-3">
+        <p className="text-sm font-semibold text-on-surface">{name}</p>
+        <p className="mt-1 text-xs text-outline">
+          {affiliation} · {role}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+/* ── 스크롤 트랙 (드래그 가능 + 자동 마퀴) ──────────────────────── */
+function ScrollTrack({ items }: { items: Testimonial[] }) {
+  const doubled = [...items, ...items];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const inner = innerRef.current;
+    if (!container || !inner) return;
+
+    let rafId = 0;
+    // float 누적 — 브라우저는 scrollLeft를 정수로 라운딩하므로,
+    // 소수 누적값을 별도로 유지하고 매 프레임 floor해서 대입한다.
+    let virtualScrollLeft = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartScrollLeft = 0;
+    let dragDistance = 0;
+
+    const tick = () => {
+      const halfWidth = inner.scrollWidth / 2;
+      if (halfWidth > 0) {
+        if (!isDragging) {
+          virtualScrollLeft += AUTO_SCROLL_PX_PER_FRAME;
+        }
+        if (virtualScrollLeft >= halfWidth) virtualScrollLeft -= halfWidth;
+        else if (virtualScrollLeft < 0) virtualScrollLeft += halfWidth;
+        container.scrollLeft = Math.floor(virtualScrollLeft);
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      // 마우스만 드래그 — 터치는 native scroll 그대로
+      if (e.pointerType !== "mouse") return;
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragStartScrollLeft = virtualScrollLeft;
+      dragDistance = 0;
+      container.style.cursor = "grabbing";
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!isDragging) return;
+      const dx = e.clientX - dragStartX;
+      dragDistance = Math.abs(dx);
+      virtualScrollLeft = dragStartScrollLeft - dx;
+    };
+    const onPointerUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.style.cursor = "";
+    };
+
+    const onClickCapture = (e: MouseEvent) => {
+      if (dragDistance > DRAG_THRESHOLD_PX) {
+        e.preventDefault();
+        e.stopPropagation();
+        dragDistance = 0;
+      }
+    };
+
+    container.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    container.addEventListener("click", onClickCapture, true);
+
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      container.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      container.removeEventListener("click", onClickCapture, true);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="
+        cursor-grab select-none overflow-x-auto
+        [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+        [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]
+      "
+    >
+      <div ref={innerRef} className="flex gap-5 py-2 [width:max-content]">
         {doubled.map((item, i) => (
-          <TestimonialCard key={`${item.name}-${i}`} {...item} />
+          <TestimonialCard key={`${item.id}-${i}`} {...item} />
         ))}
       </div>
     </div>
@@ -126,20 +153,27 @@ function ScrollTrack({
 
 /* ── 섹션 ─────────────────────────────────────────────────────── */
 export function TestimonialSection() {
+  // SSR: CSV 원래 순서대로 첫 N개 (hydration mismatch 방지)
+  // Hydration 직후: 날짜 시드 셔플 결과로 교체
+  const isClient = useIsClient();
+  const featured: Testimonial[] = isClient
+    ? seededShuffle(testimonials, getDailySeed(), FEATURED_COUNT)
+    : testimonials.slice(0, FEATURED_COUNT);
+
   return (
     <section className="overflow-hidden bg-background py-24">
-      <div className="mx-auto mb-12 max-w-4xl px-4 md:px-6">
+      <div className="mx-auto mb-12 max-w-4xl px-4 text-center md:px-6">
         <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-          리드들의 이야기
+          후기로 보는 초록
         </h2>
-        <p className="mt-3 text-sm text-on-surface-variant">
-          초록을 경험한 사람들이 직접 전하는 후기
-        </p>
       </div>
 
-      <div className="flex flex-col gap-4">
-        <ScrollTrack items={ROW_1} direction="left" />
-        <ScrollTrack items={ROW_2} direction="right" />
+      <ScrollTrack items={featured} />
+
+      <div className="mt-8 flex justify-center px-4">
+        <Button href="/archive#testimonials" variant="ghost" size="lg">
+          후기 모두 보기
+        </Button>
       </div>
     </section>
   );
