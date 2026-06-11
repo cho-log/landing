@@ -39,25 +39,23 @@ function ReviewCard({
   href,
 }: (typeof REVIEWS)[number]) {
   return (
-    <article className="flex flex-col justify-between rounded-2xl border border-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+    <article className="flex flex-col justify-between rounded-lg border border-outline-variant bg-surface-container-lowest p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)]">
 
-      {/* 본문 */}
       <div>
-        <h3 className="font-bold leading-snug text-text-primary">{title}</h3>
-        <blockquote className="mt-3 text-sm leading-relaxed text-text-secondary">
+        <h3 className="font-bold leading-snug text-on-surface">{title}</h3>
+        <blockquote className="mt-3 text-sm leading-relaxed text-on-surface-variant">
           "{excerpt}"
         </blockquote>
       </div>
 
-      {/* 하단 */}
       <div className="mt-6 flex items-end justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-chorok-100 text-xs font-bold text-chorok-700">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-secondary-container text-xs font-bold text-on-secondary-container">
             {authorName[0]}
           </div>
           <div>
-            <p className="text-sm font-semibold text-text-primary">{authorName}</p>
-            <p className="text-xs text-text-muted">{affiliation}</p>
+            <p className="text-sm font-semibold text-on-surface">{authorName}</p>
+            <p className="text-xs text-outline">{affiliation}</p>
           </div>
         </div>
         <Button href={href} external variant="ghost" className="shrink-0 text-xs">
@@ -70,18 +68,17 @@ function ReviewCard({
 
 export function LeadReviewSection() {
   return (
-    <section className="bg-chorok-50 py-24">
+    <section className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
 
-        {/* 섹션 인용구 */}
         <div className="mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-chorok-500">
+          <p className="text-xs font-semibold uppercase tracking-widest text-secondary">
             리드 회고
           </p>
-          <blockquote className="mt-3 text-2xl font-bold leading-snug tracking-tight text-text-primary md:text-3xl">
+          <blockquote className="mt-3 text-2xl font-bold leading-snug tracking-tight text-on-surface md:text-3xl">
             "리드를 한다는 건<br className="hidden md:block" /> 어떤 경험일까요."
           </blockquote>
-          <p className="mt-3 text-sm text-text-secondary">
+          <p className="mt-3 text-sm text-on-surface-variant">
             직접 경험한 리드들의 회고를 통해 초록스터디를 미리 만나보세요.
           </p>
         </div>

@@ -41,29 +41,26 @@ export function Header() {
       ref={headerRef}
       className={`sticky top-0 z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-white shadow-sm"
-          : "bg-white/90 backdrop-blur-md"
+          ? "bg-surface-container-lowest shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
+          : "bg-surface/80 backdrop-blur-md"
       }`}
     >
-      {/* ── 데스크톱 / 기본 레이아웃 ── */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 md:px-6">
 
-        {/* 로고 */}
         <Link
           href="/"
-          className="text-3xl font-bold tracking-tight text-chorok-700"
+          className="text-3xl font-bold tracking-tight text-primary"
         >
           초록
         </Link>
 
-        {/* 데스크톱 네비 + CTA (오른쪽 정렬) */}
         <div className="hidden items-center gap-8 md:flex">
-          <nav className="flex items-center gap-8 text-2xl font-medium text-text-secondary">
+          <nav className="flex items-center gap-8 text-2xl font-medium text-on-surface-variant">
             {NAV_LINKS.map(({ label, href }) => (
               <Link
                 key={href}
                 href={href}
-                className="transition-colors hover:text-text-primary"
+                className="transition-colors hover:text-on-surface"
               >
                 {label}
               </Link>
@@ -78,37 +75,35 @@ export function Header() {
           </a>
         </div>
 
-        {/* 햄버거 버튼 (모바일) */}
         <button
           type="button"
           aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((prev) => !prev)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-chorok-50 md:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-secondary-container md:hidden"
         >
           <span
-            className={`block h-0.5 w-5 rounded-full bg-text-primary transition-transform duration-200 ${
+            className={`block h-0.5 w-5 rounded-full bg-on-surface transition-transform duration-200 ${
               menuOpen ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-5 rounded-full bg-text-primary transition-opacity duration-200 ${
+            className={`block h-0.5 w-5 rounded-full bg-on-surface transition-opacity duration-200 ${
               menuOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-5 rounded-full bg-text-primary transition-transform duration-200 ${
+            className={`block h-0.5 w-5 rounded-full bg-on-surface transition-transform duration-200 ${
               menuOpen ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
         </button>
       </div>
 
-      {/* ── 모바일 드롭다운 메뉴 ── */}
       <div
         id="mobile-menu"
-        className={`overflow-hidden border-t border-border bg-white transition-all duration-200 md:hidden ${
+        className={`overflow-hidden border-t border-outline-variant bg-surface-container-lowest transition-all duration-200 md:hidden ${
           menuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
@@ -118,12 +113,12 @@ export function Header() {
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="rounded-md px-2 py-2.5 text-sm font-medium text-text-secondary transition-colors hover:bg-chorok-50 hover:text-chorok-700"
+              className="rounded-md px-2 py-2.5 text-sm font-medium text-on-surface-variant transition-colors hover:bg-secondary-container hover:text-primary"
             >
               {label}
             </Link>
           ))}
-          <div className="mt-2 border-t border-border pt-3 pb-1">
+          <div className="mt-2 border-t border-outline-variant pt-3 pb-1">
             <a
               href={GOOGLE_FORM_URL}
               target="_blank"

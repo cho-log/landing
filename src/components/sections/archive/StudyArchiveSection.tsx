@@ -34,34 +34,30 @@ function parseDuration(duration: string) {
 /* ── StudyCard ───────────────────────────────────────────────── */
 function StudyCard({ study }: { study: Study }) {
   return (
-    <article className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-xl">
-      {/* 왼쪽 초록 세로선 */}
-      <span className="absolute left-0 top-0 h-0 w-1 rounded-full bg-gradient-to-b from-chorok-300 to-chorok-700 transition-all duration-500 group-hover:h-full" />
-      {/* 헤더 */}
+    <article className="group relative flex flex-col gap-4 overflow-hidden rounded-lg border border-outline-variant bg-surface-container-lowest p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)]">
+      <span className="absolute left-0 top-0 h-0 w-1 rounded-full bg-gradient-to-b from-secondary-fixed-dim to-primary transition-all duration-500 group-hover:h-full" />
       <div className="flex items-start justify-between gap-2">
         <div>
-          <h3 className="font-bold text-text-primary">{study.name}</h3>
-          <p className="mt-0.5 text-xs text-text-muted">{study.duration}</p>
+          <h3 className="font-bold text-on-surface">{study.name}</h3>
+          <p className="mt-0.5 text-xs text-outline">{study.duration}</p>
         </div>
-        <span className="shrink-0 rounded-full bg-chorok-50 px-2.5 py-0.5 text-xs font-semibold text-chorok-700">
+        <span className="shrink-0 rounded-full bg-secondary-container px-2.5 py-0.5 text-xs font-semibold text-on-secondary-container">
           {study.season}기
         </span>
       </div>
 
-      {/* 태그 */}
       <div className="flex flex-wrap gap-1.5">
         {study.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-md bg-bg-base px-2 py-0.5 text-xs text-text-secondary ring-1 ring-border"
+            className="rounded-md bg-background px-2 py-0.5 text-xs text-on-surface-variant ring-1 ring-outline-variant"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      {/* 메타 정보 */}
-      <div className="flex items-center gap-4 text-xs text-text-muted">
+      <div className="flex items-center gap-4 text-xs text-outline">
         <span className="flex items-center gap-1">
           <PersonIcon />
           리드 {study.leadCount}명
@@ -72,27 +68,26 @@ function StudyCard({ study }: { study: Study }) {
         </span>
       </div>
 
-      {/* 링크 */}
-      <div className="flex items-center gap-3 border-t border-border pt-4">
+      <div className="flex items-center gap-3 border-t border-outline-variant pt-4">
         {study.retrospectiveUrl ? (
           <a
             href={study.retrospectiveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-xs font-medium text-chorok-600 transition-colors hover:text-chorok-800"
+            className="flex items-center gap-1 text-xs font-medium text-primary transition-colors hover:text-primary-container"
           >
             <DocIcon />
             회고 보기
           </a>
         ) : (
-          <span className="text-xs text-text-muted">회고 준비 중</span>
+          <span className="text-xs text-outline">회고 준비 중</span>
         )}
         {study.githubUrl && (
           <a
             href={study.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-xs font-medium text-text-secondary transition-colors hover:text-text-primary"
+            className="flex items-center gap-1 text-xs font-medium text-on-surface-variant transition-colors hover:text-on-surface"
           >
             <GitHubIcon />
             GitHub
@@ -137,31 +132,28 @@ export function StudyArchiveSection() {
   }, [filtered]);
 
   return (
-    <section className="bg-bg-base py-24">
+    <section className="bg-background py-24">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
 
-        {/* 섹션 제목 */}
-        <h2 className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
           스터디 아카이브
         </h2>
-        <p className="mt-2 text-sm text-text-secondary">
+        <p className="mt-2 text-sm text-on-surface-variant">
           초록이 함께 공부한 모든 스터디를 기록합니다.
         </p>
 
-        {/* 컨트롤 바 */}
         <div className="mt-8 flex items-center justify-between gap-3">
-          {/* 필터 탭 — 모바일에서 가로 스크롤 */}
           <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max items-center gap-1 rounded-xl bg-bg-surface p-1 ring-1 ring-border">
+            <div className="flex w-max items-center gap-1 rounded-md bg-surface-container-lowest p-1 ring-1 ring-outline-variant">
               {FILTER_TABS.map((tab) => (
                 <button
                   key={tab}
                   type="button"
                   onClick={() => setActiveTab(tab)}
-                  className={`whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                  className={`whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                     activeTab === tab
-                      ? "bg-chorok-600 text-white shadow-sm"
-                      : "text-text-secondary hover:text-text-primary"
+                      ? "bg-primary text-on-primary shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+                      : "text-on-surface-variant hover:text-on-surface"
                   }`}
                 >
                   {tab}
@@ -170,32 +162,29 @@ export function StudyArchiveSection() {
             </div>
           </div>
 
-          {/* 정렬 드롭다운 */}
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as SortOrder)}
-            className="shrink-0 rounded-lg border border-border bg-white px-3 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-chorok-400"
+            className="shrink-0 rounded-md border border-outline-variant bg-surface-container-lowest px-3 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
           >
             <option value="latest">최신순</option>
             <option value="season">시즌순</option>
           </select>
         </div>
 
-        {/* 결과 없음 */}
         {filtered.length === 0 && (
-          <div className="mt-16 text-center text-sm text-text-muted">
+          <div className="mt-16 text-center text-sm text-outline">
             해당 카테고리의 스터디가 없습니다.
           </div>
         )}
 
-        {/* 시즌별 그룹 */}
         <div className="mt-10 flex flex-col gap-12">
           {Array.from(grouped.entries()).map(([groupKey, groupStudies]) => (
             <div key={groupKey}>
               <div className="mb-5 flex items-center gap-3">
-                <h3 className="text-sm font-semibold text-text-muted">{groupKey}</h3>
-                <div className="h-px flex-1 bg-border" />
-                <span className="text-xs text-text-muted">{groupStudies.length}개</span>
+                <h3 className="text-sm font-semibold text-outline">{groupKey}</h3>
+                <div className="h-px flex-1 bg-outline-variant" />
+                <span className="text-xs text-outline">{groupStudies.length}개</span>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {groupStudies.map((study) => (

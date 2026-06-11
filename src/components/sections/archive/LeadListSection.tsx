@@ -15,19 +15,17 @@ function groupBySeason(list: Lead[]): Map<number, Lead[]> {
 /* ── 리드 카드 ───────────────────────────────────────────────── */
 function LeadCard({ lead }: { lead: Lead }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-white px-5 py-4 transition-colors hover:border-chorok-200 hover:bg-chorok-50/40">
-      {/* 좌측: 아바타 + 이름 + 소속 */}
+    <div className="flex items-center justify-between gap-4 rounded-md border border-outline-variant bg-surface-container-lowest px-5 py-4 transition-colors hover:border-secondary-fixed-dim hover:bg-secondary-container/40">
       <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-chorok-100 text-sm font-bold text-chorok-700">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary-container text-sm font-bold text-on-secondary-container">
           {lead.name[0]}
         </div>
         <div>
-          <p className="text-sm font-semibold text-text-primary">{lead.name}</p>
-          <p className="text-xs text-text-muted">{lead.studyName}</p>
+          <p className="text-sm font-semibold text-on-surface">{lead.name}</p>
+          <p className="text-xs text-outline">{lead.studyName}</p>
         </div>
       </div>
 
-      {/* 우측: 링크 */}
       <div className="flex shrink-0 items-center gap-2">
         {lead.blogUrl && (
           <a
@@ -35,7 +33,7 @@ function LeadCard({ lead }: { lead: Lead }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${lead.name} 블로그`}
-            className="rounded-md p-1.5 text-text-muted transition-colors hover:bg-chorok-100 hover:text-chorok-700"
+            className="rounded-md p-1.5 text-outline transition-colors hover:bg-secondary-container hover:text-primary"
           >
             <BlogIcon />
           </a>
@@ -46,7 +44,7 @@ function LeadCard({ lead }: { lead: Lead }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${lead.name} GitHub`}
-            className="rounded-md p-1.5 text-text-muted transition-colors hover:bg-chorok-100 hover:text-chorok-700"
+            className="rounded-md p-1.5 text-outline transition-colors hover:bg-secondary-container hover:text-primary"
           >
             <GitHubIcon />
           </a>
@@ -61,25 +59,24 @@ export function LeadListSection() {
   const grouped = groupBySeason(leads);
 
   return (
-    <section className="bg-bg-surface py-24">
+    <section className="bg-surface-container-lowest py-24">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
-        <h2 className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
           역대 리드
         </h2>
-        <p className="mt-2 text-sm text-text-secondary">
+        <p className="mt-2 text-sm text-on-surface-variant">
           초록스터디를 이끌어온 모든 리드들
         </p>
 
         <div className="mt-10 flex flex-col gap-10">
           {Array.from(grouped.entries()).map(([season, seasonLeads]) => (
             <div key={season}>
-              {/* 시즌 헤더 */}
               <div className="mb-4 flex items-center gap-3">
-                <h3 className="text-sm font-semibold text-text-muted">
+                <h3 className="text-sm font-semibold text-outline">
                   {season}기 리드
                 </h3>
-                <div className="h-px flex-1 bg-border" />
-                <span className="text-xs text-text-muted">{seasonLeads.length}명</span>
+                <div className="h-px flex-1 bg-outline-variant" />
+                <span className="text-xs text-outline">{seasonLeads.length}명</span>
               </div>
 
               {/* 카드 그리드 */}
