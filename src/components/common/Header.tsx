@@ -51,10 +51,10 @@ export function Header() {
           <Image
             src="/logo.png"
             alt="초록"
-            width={128}
-            height={128}
+            width={1706}
+            height={899}
             priority
-            className="hidden h-16 w-auto md:block"
+            className="hidden h-12 w-auto md:block"
           />
           <Image
             src="/logo-square.png"
@@ -62,7 +62,7 @@ export function Header() {
             width={112}
             height={112}
             priority
-            className="block h-14 w-auto md:hidden"
+            className="block h-12 w-auto md:hidden"
           />
         </Link>
 
