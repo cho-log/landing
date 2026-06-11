@@ -52,7 +52,7 @@ export function Header() {
             : "bg-surface/80 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 md:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
         <Link href="/" aria-label="초록 홈" className="flex items-center">
           <Image
             src="/logo.png"
@@ -74,7 +74,7 @@ export function Header() {
 
         <div className="hidden items-center gap-8 md:flex">
           <nav
-            className={`flex items-center gap-8 text-2xl font-medium transition-colors ${
+            className={`flex items-center gap-8 text-base font-bold transition-colors ${
               transparent
                 ? "text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
                 : "text-on-surface-variant"
@@ -93,7 +93,16 @@ export function Header() {
             ))}
           </nav>
           <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">
-            <Button size="lg">리드 신청하기</Button>
+            <Button
+              size="md"
+              className={
+                transparent
+                  ? "!bg-white/10 !text-white !border !border-white/70 backdrop-blur-sm hover:!bg-white/20"
+                  : "!bg-primary/85 backdrop-blur-sm hover:!bg-primary/95"
+              }
+            >
+              리드 신청하기
+            </Button>
           </a>
         </div>
 
