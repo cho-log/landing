@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "./Button";
 
 // TODO: 실제 구글폼 URL로 교체
@@ -17,6 +18,9 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const transparent = isHome && !scrolled;
 
   // 스크롤 감지
   useEffect(() => {
@@ -40,39 +44,49 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-50 transition-all duration-200 ${
-        scrolled
-          ? "bg-surface-container-lowest shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
-          : "bg-surface/80 backdrop-blur-md"
+      className={`${isHome ? "fixed left-0 right-0" : "sticky"} top-0 z-50 transition-all duration-200 ${
+        transparent
+          ? "bg-transparent"
+          : scrolled
+            ? "bg-surface-container-lowest shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
+            : "bg-surface/80 backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 md:px-6">
         <Link href="/" aria-label="초록 홈" className="flex items-center">
           <Image
-            src="/logo.png"
+            src="/tmp.png"
             alt="초록"
             width={1706}
             height={899}
             priority
-            className="hidden h-12 w-auto md:block"
+            className={`hidden h-12 w-auto md:block ${transparent ? "drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]" : ""}`}
           />
           <Image
-            src="/logo-square.png"
+            src="/tmp2.png"
             alt="초록"
             width={112}
             height={112}
             priority
-            className="block h-12 w-auto md:hidden"
+            className={`block h-12 w-auto md:hidden ${transparent ? "drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]" : ""}`}
           />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          <nav className="flex items-center gap-8 text-2xl font-medium text-on-surface-variant">
+          <nav
+            className={`flex items-center gap-8 text-2xl font-medium transition-colors ${
+              transparent
+                ? "text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
+                : "text-on-surface-variant"
+            }`}
+          >
             {NAV_LINKS.map(({ label, href }) => (
               <Link
                 key={href}
                 href={href}
-                className="transition-colors hover:text-on-surface"
+                className={`transition-colors ${
+                  transparent ? "hover:text-white/80" : "hover:text-on-surface"
+                }`}
               >
                 {label}
               </Link>
@@ -92,19 +106,19 @@ export function Header() {
           className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg transition-colors hover:bg-secondary-container md:hidden"
         >
           <span
-            className={`block h-0.5 w-5 rounded-full bg-on-surface transition-transform duration-200 ${
-              menuOpen ? "translate-y-2 rotate-45" : ""
-            }`}
+            className={`block h-0.5 w-5 rounded-full transition-transform duration-200 ${
+              transparent ? "bg-white" : "bg-on-surface"
+            } ${menuOpen ? "translate-y-2 rotate-45" : ""}`}
           />
           <span
-            className={`block h-0.5 w-5 rounded-full bg-on-surface transition-opacity duration-200 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
+            className={`block h-0.5 w-5 rounded-full transition-opacity duration-200 ${
+              transparent ? "bg-white" : "bg-on-surface"
+            } ${menuOpen ? "opacity-0" : ""}`}
           />
           <span
-            className={`block h-0.5 w-5 rounded-full bg-on-surface transition-transform duration-200 ${
-              menuOpen ? "-translate-y-2 -rotate-45" : ""
-            }`}
+            className={`block h-0.5 w-5 rounded-full transition-transform duration-200 ${
+              transparent ? "bg-white" : "bg-on-surface"
+            } ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`}
           />
         </button>
       </div>
