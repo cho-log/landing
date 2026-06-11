@@ -7,26 +7,24 @@ const LINKS = {
 
 export function Footer() {
   return (
-    <footer className="bg-chorok-950 text-white">
+    <footer className="bg-primary text-on-primary">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-4 py-12 md:flex-row md:items-center md:px-6">
 
-        {/* 좌측: 로고 + 소개 */}
         <div className="flex flex-col gap-2">
-          <span className="text-xl font-bold tracking-tight text-white">
+          <span className="text-xl font-bold tracking-tight text-on-primary">
             초록
           </span>
-          <p className="text-sm leading-relaxed text-chorok-200">
+          <p className="text-sm leading-relaxed text-on-primary-container">
             성장과 나눔으로 함께하는 개발자 커뮤니티
           </p>
         </div>
 
-        {/* 우측: 링크 */}
-        <nav className="flex items-center gap-6 text-sm text-chorok-300">
+        <nav className="flex items-center gap-6 text-sm text-on-primary-container">
           <a
             href={LINKS.discord}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 transition-colors hover:text-white"
+            className="flex items-center gap-1.5 transition-colors hover:text-on-primary"
           >
             <DiscordIcon />
             디스코드
@@ -35,14 +33,14 @@ export function Footer() {
             href={LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 transition-colors hover:text-white"
+            className="flex items-center gap-1.5 transition-colors hover:text-on-primary"
           >
             <GitHubIcon />
             GitHub
           </a>
           <a
             href={LINKS.contact}
-            className="flex items-center gap-1.5 transition-colors hover:text-white"
+            className="flex items-center gap-1.5 transition-colors hover:text-on-primary"
           >
             <MailIcon />
             문의
@@ -50,9 +48,8 @@ export function Footer() {
         </nav>
       </div>
 
-      {/* 하단 카피라이트 */}
-      <div className="border-t border-chorok-900">
-        <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-chorok-700 md:px-6">
+      <div className="border-t border-primary-container">
+        <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-on-primary-fixed-variant md:px-6">
           © 2026 초록. All rights reserved.
         </p>
       </div>

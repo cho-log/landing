@@ -57,21 +57,21 @@ function TestimonialCard({
   return (
     <figure
       className="
-        w-[280px] shrink-0 rounded-2xl border border-border bg-white p-6 shadow-sm
+        w-[280px] shrink-0 rounded-lg border border-outline-variant bg-surface-container-lowest p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)]
         sm:w-72 md:w-80
         [scroll-snap-align:start]
       "
     >
-      <blockquote className="text-sm leading-relaxed text-text-secondary">
+      <blockquote className="text-sm leading-relaxed text-on-surface-variant">
         "{text}"
       </blockquote>
       <figcaption className="mt-5 flex items-center gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-chorok-100 text-sm font-bold text-chorok-700">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary-container text-sm font-bold text-on-secondary-container">
           {name[0]}
         </div>
         <div>
-          <p className="text-sm font-semibold text-text-primary">{name}</p>
-          <p className="text-xs text-text-muted">{study}</p>
+          <p className="text-sm font-semibold text-on-surface">{name}</p>
+          <p className="text-xs text-outline">{study}</p>
         </div>
       </figcaption>
     </figure>
@@ -127,12 +127,12 @@ function ScrollTrack({
 /* ── 섹션 ─────────────────────────────────────────────────────── */
 export function TestimonialSection() {
   return (
-    <section className="overflow-hidden bg-bg-base py-24">
+    <section className="overflow-hidden bg-background py-24">
       <div className="mx-auto mb-12 max-w-4xl px-4 md:px-6">
-        <h2 className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
           리드들의 이야기
         </h2>
-        <p className="mt-3 text-sm text-text-secondary">
+        <p className="mt-3 text-sm text-on-surface-variant">
           초록을 경험한 사람들이 직접 전하는 후기
         </p>
       </div>

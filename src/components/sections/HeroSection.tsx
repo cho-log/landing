@@ -9,7 +9,7 @@ export function HeroSection() {
 
       {/* 배경 이미지 — hero-bg 클래스로 나중에 교체 */}
       <div
-        className="hero-bg absolute inset-0 bg-chorok-950"
+        className="hero-bg absolute inset-0 bg-primary"
         aria-hidden="true"
       />
 

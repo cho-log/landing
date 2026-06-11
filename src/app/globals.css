@@ -1,79 +1,143 @@
-/* Pretendard — CDN (next/font/local로 교체 시 이 줄 제거) */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+/* Pretendard Variable — CDN (next/font/local로 교체 시 이 줄 제거) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 @import "tailwindcss";
 
-/* ─── CSS Variables ─────────────────────────────────────────── */
-:root {
-  /* Brand primitives */
-  --chorok:       #16A34A; /* green-600 — 메인 초록 */
-  --chorok-light: #22C55E; /* green-500 */
-  --chorok-dark:  #15803D; /* green-700 */
-  --duo:          #7C3AED; /* violet-600 — 초록해듀오 🟣 */
-  --project:      #EA580C; /* orange-600 — 초록프로젝트 🟠 */
+/* ─────────────────────────────────────────────────────────────────
+   Cho-log Design System — DESIGN.md 기반 단일 source of truth
+   M3 시맨틱 컬러 + Pretendard typography + medium-radius shapes
+   ───────────────────────────────────────────────────────────────── */
 
-  /* Semantic */
-  --bg-base:        #FAFAFA;
-  --bg-surface:     #FFFFFF;
-  --text-primary:   #111827;
-  --text-secondary: #6B7280;
-  --text-muted:     #9CA3AF;
-  --border:         #E5E7EB;
-  --border-focus:   #16A34A;
-}
-
-/* ─── Tailwind v4 Theme ─────────────────────────────────────── */
 @theme inline {
-  /* Fonts */
-  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', monospace;
+  /* ── Fonts ───────────────────────────────────────────────────── */
+  --font-sans:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "Fira Code", monospace;
 
-  /* ── Chorok (메인 초록 팔레트) ── */
-  --color-chorok-50:  #F0FDF4;
-  --color-chorok-100: #DCFCE7;
-  --color-chorok-200: #BBF7D0;
-  --color-chorok-300: #86EFAC;
-  --color-chorok-400: #4ADE80;
-  --color-chorok-500: #22C55E;
-  --color-chorok-600: #16A34A;
-  --color-chorok-700: #15803D;
-  --color-chorok-800: #166534;
-  --color-chorok-900: #14532D;
-  --color-chorok-950: #052E16;
+  /* ── Typography scale (DESIGN.md typography) ─────────────────── */
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
 
-  /* ── Duo (보라 — 초록해듀오 🟣) ── */
-  --color-duo-100: #EDE9FE;
-  --color-duo-200: #DDD6FE;
-  --color-duo-300: #C4B5FD;
-  --color-duo-400: #A78BFA;
-  --color-duo-500: #8B5CF6;
-  --color-duo-600: #7C3AED;
-  --color-duo-700: #6D28D9;
-  --color-duo-900: #3B0764;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 600;
 
-  /* ── Project (주황 — 초록프로젝트 🟠) ── */
-  --color-project-100: #FFEDD5;
-  --color-project-200: #FED7AA;
-  --color-project-300: #FDBA74;
-  --color-project-400: #FB923C;
-  --color-project-500: #F97316;
-  --color-project-600: #EA580C;
-  --color-project-700: #C2410C;
-  --color-project-900: #7C2D12;
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--font-weight: 600;
 
-  /* ── Semantic color aliases ── */
-  --color-brand:           var(--chorok);
-  --color-brand-light:     var(--chorok-light);
-  --color-brand-dark:      var(--chorok-dark);
-  --color-bg-base:         var(--bg-base);
-  --color-bg-surface:      var(--bg-surface);
-  --color-text-primary:    var(--text-primary);
-  --color-text-secondary:  var(--text-secondary);
-  --color-text-muted:      var(--text-muted);
-  --color-border:          var(--border);
-  --color-border-focus:    var(--border-focus);
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-label-md: 14px;
+  --text-label-md--line-height: 1.4;
+  --text-label-md--letter-spacing: 0.05em;
+  --text-label-md--font-weight: 600;
+
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 1.4;
+  --text-label-sm--font-weight: 500;
+
+  /* ── Radius scale (DESIGN.md rounded) ────────────────────────── */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* ── Spacing tokens (DESIGN.md spacing) ──────────────────────── */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 16px;
+  --spacing-container-max: 1200px;
+
+  /* ── Surface colors (M3) ─────────────────────────────────────── */
+  --color-surface: #fbf9f8;
+  --color-surface-dim: #dcd9d9;
+  --color-surface-bright: #fbf9f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container: #f0eded;
+  --color-surface-container-high: #eae8e7;
+  --color-surface-container-highest: #e4e2e1;
+  --color-surface-variant: #e4e2e1;
+  --color-surface-tint: #436651;
+  --color-on-surface: #1b1c1c;
+  --color-on-surface-variant: #424843;
+  --color-inverse-surface: #303030;
+  --color-inverse-on-surface: #f3f0f0;
+  --color-outline: #727973;
+  --color-outline-variant: #c1c8c1;
+  --color-background: #fbf9f8;
+  --color-on-background: #1b1c1c;
+
+  /* ── Primary (Deep Forest) ───────────────────────────────────── */
+  --color-primary: #163826;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #2d4f3c;
+  --color-on-primary-container: #9ac0a7;
+  --color-inverse-primary: #a9cfb7;
+  --color-primary-fixed: #c5ecd2;
+  --color-primary-fixed-dim: #a9cfb7;
+  --color-on-primary-fixed: #002112;
+  --color-on-primary-fixed-variant: #2c4e3b;
+
+  /* ── Secondary (Soft Sage) ───────────────────────────────────── */
+  --color-secondary: #4a654f;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #c9e7cc;
+  --color-on-secondary-container: #4e6953;
+  --color-secondary-fixed: #cceacf;
+  --color-secondary-fixed-dim: #b0ceb4;
+  --color-on-secondary-fixed: #062010;
+  --color-on-secondary-fixed-variant: #334d38;
+
+  /* ── Tertiary (Charcoal) ─────────────────────────────────────── */
+  --color-tertiary: #32322d;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #494843;
+  --color-on-tertiary-container: #b9b7b0;
+  --color-tertiary-fixed: #e5e2db;
+  --color-tertiary-fixed-dim: #c9c6c0;
+  --color-on-tertiary-fixed: #1c1c18;
+  --color-on-tertiary-fixed-variant: #474742;
+
+  /* ── Error ───────────────────────────────────────────────────── */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* ── Category accents (dusty 톤으로 재정의 — DESIGN.md muted 무드 정합) ─── */
+  /* duo = 초록해듀오, project = 초록프로젝트. 카테고리 식별용으로만 사용. */
+  --color-duo: #7a6a8c;
+  --color-duo-container: #ece4f1;
+  --color-on-duo-container: #4a3f5c;
+
+  --color-project: #a86b4a;
+  --color-project-container: #f3e3d6;
+  --color-on-project-container: #6b3f23;
+
+  /* ── Animations ──────────────────────────────────────────────── */
+  --animate-scroll-left: scroll-left 35s linear infinite;
+  --animate-scroll-right: scroll-right 35s linear infinite;
 }
 
-/* ─── Animations ────────────────────────────────────────────── */
 @keyframes scroll-left {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -84,16 +148,13 @@
   to   { transform: translateX(0); }
 }
 
-@theme inline {
-  --animate-scroll-left:  scroll-left 35s linear infinite;
-  --animate-scroll-right: scroll-right 35s linear infinite;
-}
-
-/* ─── Base Styles ───────────────────────────────────────────── */
+/* ─── Base styles ────────────────────────────────────────────────
+   Background = warm off-white (cream); text = charcoal on-surface.
+   word-break: keep-all로 한글 어절 단위 줄바꿈 유지. */
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-base);
-  color: var(--text-primary);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   word-break: keep-all;

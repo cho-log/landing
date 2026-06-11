@@ -45,43 +45,41 @@ const REVIEW_FLOW = [
 
 export function StudyDetailSection() {
   return (
-    <section className="bg-bg-surface py-24">
+    <section className="bg-surface-container-lowest py-24">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
 
-        {/* ── 비교표 ──────────────────────────────────── */}
-        <h2 className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+        <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
           초록스터디가 다른 이유
         </h2>
-        <p className="mt-3 text-sm text-text-secondary">
+        <p className="mt-3 text-sm text-on-surface-variant">
           일반 개발 스터디와 초록스터디를 나란히 놓고 비교해봤습니다.
         </p>
 
-        {/* overflow-x-auto로 모바일 가로 스크롤 */}
-        <div className="mt-8 overflow-x-auto rounded-2xl border border-border">
+        <div className="mt-8 overflow-x-auto rounded-lg border border-outline-variant">
           <table className="w-full min-w-[520px] text-sm">
             <thead>
-              <tr className="border-b border-border bg-bg-base">
-                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-text-muted">
+              <tr className="border-b border-outline-variant bg-surface-container-low">
+                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-outline">
                   항목
                 </th>
-                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-text-muted">
+                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-outline">
                   일반 개발 스터디
                 </th>
-                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-chorok-600">
+                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-primary">
                   🟢 초록스터디
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border bg-white">
+            <tbody className="divide-y divide-outline-variant bg-surface-container-lowest">
               {COMPARISON_ROWS.map((row) => (
-                <tr key={row.label} className="transition-colors hover:bg-chorok-50/40">
-                  <td className="px-5 py-4 font-medium text-text-primary">
+                <tr key={row.label} className="transition-colors hover:bg-secondary-container/40">
+                  <td className="px-5 py-4 font-medium text-on-surface">
                     {row.label}
                   </td>
-                  <td className="px-5 py-4 text-text-secondary">
+                  <td className="px-5 py-4 text-on-surface-variant">
                     {row.general}
                   </td>
-                  <td className="px-5 py-4 font-semibold text-chorok-700">
+                  <td className="px-5 py-4 font-semibold text-primary">
                     {row.chorok}
                   </td>
                 </tr>
@@ -90,32 +88,28 @@ export function StudyDetailSection() {
           </table>
         </div>
 
-        {/* ── 코드 리뷰 문화 ──────────────────────────── */}
         <div className="mt-20">
-          <h3 className="text-2xl font-bold tracking-tight text-text-primary">
+          <h3 className="text-2xl font-bold tracking-tight text-on-surface">
             코드 리뷰 문화
           </h3>
-          <p className="mt-2 text-sm text-text-secondary">
+          <p className="mt-2 text-sm text-on-surface-variant">
             초록스터디의 핵심은 코드를 함께 읽고, 함께 성장하는 것입니다.
           </p>
 
-          {/* 3단계 플로우 */}
           <div className="mt-8 flex flex-col gap-0 md:flex-row">
             {REVIEW_FLOW.map((item, i) => (
               <div key={item.step} className="flex flex-1 flex-col md:flex-row">
-                {/* 스텝 카드 */}
-                <div className="relative flex flex-1 flex-col gap-2 rounded-2xl bg-chorok-50 px-6 py-5">
-                  <span className="text-xs font-bold tracking-widest text-chorok-400">
+                <div className="relative flex flex-1 flex-col gap-2 rounded-lg bg-secondary-container px-6 py-5">
+                  <span className="text-xs font-bold tracking-widest text-secondary">
                     STEP {item.step}
                   </span>
-                  <p className="font-semibold text-chorok-800">{item.label}</p>
-                  <p className="text-xs leading-relaxed text-text-secondary">
+                  <p className="font-semibold text-on-secondary-container">{item.label}</p>
+                  <p className="text-xs leading-relaxed text-on-surface-variant">
                     {item.desc}
                   </p>
                 </div>
-                {/* 화살표 구분자 */}
                 {i < REVIEW_FLOW.length - 1 && (
-                  <div className="flex items-center justify-center px-2 py-2 text-chorok-300 md:py-0">
+                  <div className="flex items-center justify-center px-2 py-2 text-secondary-fixed-dim md:py-0">
                     <svg
                       className="hidden h-5 w-5 md:block"
                       viewBox="0 0 20 20"
@@ -146,9 +140,8 @@ export function StudyDetailSection() {
             ))}
           </div>
 
-          {/* 실제 PR 사례 */}
           <div className="mt-10">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-text-muted">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-outline">
               실제 PR 사례
             </p>
             <ul className="flex flex-col gap-3">
@@ -158,24 +151,23 @@ export function StudyDetailSection() {
                     href={pr.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-white px-5 py-4 transition-colors hover:border-chorok-300 hover:bg-chorok-50"
+                    className="group flex items-center justify-between gap-4 rounded-md border border-outline-variant bg-surface-container-lowest px-5 py-4 transition-colors hover:border-secondary-fixed-dim hover:bg-secondary-container"
                   >
                     <div className="flex items-center gap-3">
-                      {/* PR 아이콘 */}
                       <svg
-                        className="h-4 w-4 shrink-0 text-chorok-400"
+                        className="h-4 w-4 shrink-0 text-secondary-fixed-dim"
                         viewBox="0 0 16 16"
                         fill="currentColor"
                         aria-hidden="true"
                       >
                         <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z" />
                       </svg>
-                      <span className="text-sm font-medium text-text-primary group-hover:text-chorok-700">
+                      <span className="text-sm font-medium text-on-surface group-hover:text-primary">
                         {pr.title}
                       </span>
                     </div>
                     <svg
-                      className="h-4 w-4 shrink-0 text-text-muted group-hover:text-chorok-500"
+                      className="h-4 w-4 shrink-0 text-outline group-hover:text-secondary"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"

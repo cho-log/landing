@@ -25,21 +25,20 @@ type AsAnchor = BaseProps &
 
 type ButtonProps = AsButton | AsAnchor;
 
-/* ── Variant styles ──────────────────────────────────────────── */
+/* DESIGN.md Components: Primary = solid Deep Forest, Secondary = Soft Sage ghost. */
 const variantClass: Record<Variant, string> = {
   primary:
-    "bg-chorok-600 text-white hover:bg-chorok-700 active:bg-chorok-800 focus-visible:ring-chorok-500",
+    "bg-primary text-on-primary hover:bg-primary-container active:bg-on-primary-fixed-variant focus-visible:ring-primary",
   secondary:
-    "border border-chorok-600 text-chorok-600 hover:bg-chorok-50 active:bg-chorok-100 focus-visible:ring-chorok-400",
+    "border border-secondary text-secondary hover:bg-secondary-container active:bg-secondary-fixed-dim focus-visible:ring-secondary",
   ghost:
-    "group/ghost text-chorok-600 hover:text-chorok-800 hover:font-semibold focus-visible:ring-chorok-300",
+    "group/ghost text-primary hover:text-primary-container hover:font-semibold focus-visible:ring-secondary-fixed-dim",
 };
 
-/* ── Size styles ─────────────────────────────────────────────── */
 const sizeClass: Record<Size, string> = {
-  sm: "h-8 px-3 text-sm rounded-md",
-  md: "h-10 px-4 text-sm rounded-lg",
-  lg: "h-12 px-6 text-base rounded-lg",
+  sm: "h-8 px-4 text-sm rounded-md",
+  md: "h-10 px-6 text-sm rounded-lg",
+  lg: "h-12 px-8 text-base rounded-lg",
 };
 
 const ghostOverride = "h-auto px-0 rounded-none";
@@ -47,7 +46,6 @@ const ghostOverride = "h-auto px-0 rounded-none";
 const baseClass =
   "inline-flex items-center justify-center gap-1.5 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
-/* ── Component ───────────────────────────────────────────────── */
 export function Button(props: ButtonProps) {
   const {
     variant = "primary",
@@ -78,7 +76,6 @@ export function Button(props: ButtonProps) {
   if ("href" in props && props.href !== undefined) {
     const { href, external, ...anchorRest } = rest as Omit<AsAnchor, keyof BaseProps>;
 
-    /* 외부 링크: <a> 태그 */
     if (external || href.startsWith("http") || href.startsWith("mailto:")) {
       return (
         <a
@@ -93,7 +90,6 @@ export function Button(props: ButtonProps) {
       );
     }
 
-    /* 내부 링크: next/link → basePath 자동 처리 */
     return (
       <Link href={href} className={computedClass} {...(anchorRest as object)}>
         {content}
@@ -101,7 +97,6 @@ export function Button(props: ButtonProps) {
     );
   }
 
-  /* href 없으면 <button> */
   return (
     <button
       type="button"

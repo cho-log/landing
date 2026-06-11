@@ -22,7 +22,7 @@ export default function Home() {
       <HeroSection />
       {/* Hero → Intro 그라데이션 브릿지: hero 위로 겹쳐 경계를 녹임 */}
       <div
-        className="relative z-10 -mt-40 h-40 bg-gradient-to-b from-transparent to-bg-base"
+        className="relative z-10 -mt-40 h-40 bg-gradient-to-b from-transparent to-background"
         aria-hidden="true"
       />
       <IntroSection />

@@ -38,16 +38,15 @@ export default function ArchivePage() {
       {/* 4. 역대 리드 목록 */}
       <LeadListSection />
 
-      {/* 5. 마무리 CTA */}
-      <section className="bg-chorok-950 py-24 text-white">
+      <section className="bg-primary py-24 text-on-primary">
         <div className="mx-auto max-w-2xl px-4 text-center md:px-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-chorok-400">
+          <p className="text-xs font-semibold uppercase tracking-widest text-inverse-primary">
             다음 초록스터디
           </p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
             다음 사람은 당신일 수 있습니다.
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-chorok-200">
+          <p className="mt-4 text-sm leading-relaxed text-on-primary-container">
             배운 것을 나누고 싶은 마음이 있다면, 그걸로 충분합니다.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -59,7 +58,7 @@ export default function ArchivePage() {
               external
               variant="secondary"
               size="lg"
-              className="border-chorok-600 text-chorok-300 hover:bg-chorok-900"
+              className="border-inverse-primary text-inverse-primary hover:bg-primary-container"
             >
               디스코드 입장 →
             </Button>

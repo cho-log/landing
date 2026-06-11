@@ -47,16 +47,16 @@ function StatCard({
   const count = useCountUp(value, active);
 
   return (
-    <div className="flex flex-col items-center gap-2 rounded-2xl bg-white px-8 py-10 shadow-sm ring-1 ring-chorok-100">
+    <div className="flex flex-col items-center gap-2 rounded-lg bg-surface-container-lowest px-8 py-10 shadow-[0_4px_20px_rgba(0,0,0,0.04)] ring-1 ring-outline-variant">
       <p className="flex items-end gap-1 tabular-nums">
-        <span className="text-6xl font-bold leading-none tracking-tight text-chorok-700 md:text-7xl">
+        <span className="text-6xl font-bold leading-none tracking-tight text-primary md:text-7xl">
           {count.toLocaleString()}
         </span>
-        <span className="mb-1.5 text-xl font-semibold text-chorok-400">
+        <span className="mb-1.5 text-xl font-semibold text-secondary">
           {unit}
         </span>
       </p>
-      <p className="text-sm font-medium text-text-secondary">{label}</p>
+      <p className="text-sm font-medium text-on-surface-variant">{label}</p>
     </div>
   );
 }
@@ -85,13 +85,13 @@ export function HistorySection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-chorok-50 py-24">
+    <section ref={sectionRef} className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-4xl px-4 md:px-6">
 
-        <h2 className="text-center text-3xl font-bold tracking-tight text-text-primary md:text-4xl">
+        <h2 className="text-center text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
           역대 활동 히스토리
         </h2>
-        <p className="mt-3 text-center text-sm text-text-secondary">
+        <p className="mt-3 text-center text-sm text-on-surface-variant">
           초록이 함께 걸어온 시간들
         </p>
 
