@@ -98,7 +98,7 @@ export function Header() {
               className={
                 transparent
                   ? "!bg-white/10 !text-white !border !border-white/70 backdrop-blur-sm hover:!bg-white/20"
-                  : "!bg-primary/85 backdrop-blur-sm hover:!bg-primary/95"
+                  : ""
               }
             >
               리드 신청하기
