@@ -12,6 +12,7 @@ export const metadata: Metadata = {
       "초록의 역대 스터디 기록, 리드 회고, 역대 리드 목록을 한눈에 확인하세요.",
   },
 };
+import { PageBanner } from "@/src/components/common/PageBanner";
 import { FeaturedStudySection } from "@/src/components/sections/archive/FeaturedStudySection";
 import { StudyArchiveSection } from "@/src/components/sections/archive/StudyArchiveSection";
 import { TestimonialArchiveSection } from "@/src/components/sections/archive/TestimonialArchiveSection";
@@ -21,6 +22,13 @@ import { SITE_LINKS } from "@/src/lib/links";
 export default function ArchivePage() {
   return (
     <>
+      <PageBanner
+        imageSrc="/archive-banner.JPG"
+        title="아카이브"
+        label="ARCHIVE"
+        objectPosition="center 40%"
+      />
+
       {/* 1. 대표 스터디 */}
       <FeaturedStudySection />
 

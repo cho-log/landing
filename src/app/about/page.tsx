@@ -12,6 +12,7 @@ export const metadata: Metadata = {
       "초록스터디, 초록해듀오, 초록프로젝트 — 초록의 다양한 활동과 운영 가이드를 소개합니다.",
   },
 };
+import { PageBanner } from "@/src/components/common/PageBanner";
 import { ActivitiesSection } from "@/src/components/sections/about/ActivitiesSection";
 import { StudyDetailSection } from "@/src/components/sections/about/StudyDetailSection";
 import { GuideSection } from "@/src/components/sections/about/GuideSection";
@@ -20,24 +21,12 @@ import { SITE_LINKS } from "@/src/lib/links";
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-surface-container-lowest py-24 md:py-32">
-        <div className="mx-auto max-w-3xl px-4 text-right md:px-6">
-          <h1 className="text-5xl font-bold tracking-tight text-primary md:text-6xl">
-            초록
-          </h1>
-          <p className="mt-4 text-lg leading-relaxed text-on-surface-variant md:text-xl">
-            함께 성장하는 개발자 커뮤니티
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-end gap-3">
-            <Button href={SITE_LINKS.applyForm} external size="lg">
-              리드 신청하기
-            </Button>
-            <Button href={SITE_LINKS.discord} external variant="secondary" size="lg">
-              디스코드 입장하기
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PageBanner
+        imageSrc="/about-banner.jpeg"
+        title="초록 소개"
+        label="ABOUT"
+        objectPosition="center 35%"
+      />
 
       <ActivitiesSection />
 
@@ -57,7 +46,12 @@ export default function AboutPage() {
             <Button href={SITE_LINKS.applyForm} external size="lg">
               리드 신청하기
             </Button>
-            <Button href={SITE_LINKS.discord} external variant="secondary" size="lg">
+            <Button
+              href={SITE_LINKS.discord}
+              external
+              variant="secondary"
+              size="lg"
+            >
               디스코드 입장 →
             </Button>
           </div>

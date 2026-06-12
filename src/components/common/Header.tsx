@@ -12,13 +12,16 @@ const NAV_LINKS = [
   { label: "아카이빙", href: "/archive" },
 ];
 
+// 상단에 풀블리드 배너/Hero가 있어 헤더가 그 위에 투명하게 떠야 하는 경로
+const TRANSPARENT_HEADER_ROUTES = ["/", "/about", "/archive"];
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const transparent = isHome && !scrolled;
+  const hasBannerHero = TRANSPARENT_HEADER_ROUTES.includes(pathname);
+  const transparent = hasBannerHero && !scrolled;
 
   // 스크롤 감지
   useEffect(() => {
@@ -42,7 +45,7 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className={`${isHome ? "fixed left-0 right-0" : "sticky"} top-0 z-50 transition-all duration-200 ${
+      className={`${hasBannerHero ? "fixed left-0 right-0" : "sticky"} top-0 z-50 transition-all duration-200 ${
         transparent
           ? "bg-transparent"
           : scrolled
