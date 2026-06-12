@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   },
 };
 import { PageBanner } from "@/src/components/common/PageBanner";
+import { IdentitySection } from "@/src/components/sections/about/IdentitySection";
 import { ActivitiesSection } from "@/src/components/sections/about/ActivitiesSection";
 import { StudyDetailSection } from "@/src/components/sections/about/StudyDetailSection";
 import { GuideSection } from "@/src/components/sections/about/GuideSection";
@@ -27,6 +28,8 @@ export default function AboutPage() {
         label="ABOUT"
         objectPosition="center 35%"
       />
+
+      <IdentitySection />
 
       <ActivitiesSection />
 
