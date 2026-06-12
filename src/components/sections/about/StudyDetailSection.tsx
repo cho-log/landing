@@ -45,7 +45,10 @@ const REVIEW_FLOW = [
 
 export function StudyDetailSection() {
   return (
-    <section className="bg-surface-container-lowest py-24">
+    <section
+      id="study-detail"
+      className="scroll-mt-24 bg-background py-24"
+    >
       <div className="mx-auto max-w-5xl px-4 md:px-6">
 
         <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
