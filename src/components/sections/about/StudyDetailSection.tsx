@@ -220,7 +220,7 @@ export function StudyDetailSection() {
           </header>
 
           {/* Block A — 학습 방식 */}
-          <div className="mt-16 grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12">
+          <div className="mt-14 grid grid-cols-1 items-center gap-10 md:grid-cols-[240px_1fr] md:gap-14">
             <LearningCycleGraphic />
             <div>
               <ul className="flex flex-col gap-4">
@@ -288,16 +288,21 @@ export function StudyDetailSection() {
             스터디원과 리뷰어를 모아 신청한 뒤, 선발되면 자료와 운영 가이드를
             받아 스터디를 시작합니다.
           </p>
-          <ol className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-4">
-            {JOIN_STEPS.map((step) => (
-              <li
-                key={step.num}
-                className="flex flex-col rounded-lg border border-outline-variant bg-surface-container-lowest p-6"
-              >
-                <span className="text-xs font-bold tracking-widest text-secondary">
-                  STEP {step.num}
-                </span>
-                <h4 className="mt-3 text-base font-semibold text-on-surface">
+          <ol className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-6">
+            {JOIN_STEPS.map((step, i) => (
+              <li key={step.num} className="flex flex-col">
+                <div className="flex items-center gap-4">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-on-primary">
+                    {step.num}
+                  </span>
+                  {i < JOIN_STEPS.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="hidden h-px flex-1 bg-outline-variant md:block"
+                    />
+                  )}
+                </div>
+                <h4 className="mt-4 text-base font-semibold text-on-surface">
                   {step.title}
                 </h4>
                 <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
@@ -315,7 +320,7 @@ export function StudyDetailSection() {
 function LearningCycleGraphic() {
   return (
     <div
-      className="relative mx-auto aspect-square w-full max-w-[320px]"
+      className="relative mx-auto aspect-square w-full max-w-[240px]"
       aria-hidden="true"
     >
       <svg
