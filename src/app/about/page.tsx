@@ -15,12 +15,7 @@ export const metadata: Metadata = {
 import { ActivitiesSection } from "@/src/components/sections/about/ActivitiesSection";
 import { StudyDetailSection } from "@/src/components/sections/about/StudyDetailSection";
 import { GuideSection } from "@/src/components/sections/about/GuideSection";
-
-// TODO: 실제 링크로 교체
-const LINKS = {
-  googleForm: "https://forms.gle/REPLACE_ME",
-  discord:    "https://discord.gg/REPLACE_ME",
-};
+import { SITE_LINKS } from "@/src/lib/links";
 
 export default function AboutPage() {
   return (
@@ -34,10 +29,10 @@ export default function AboutPage() {
             함께 성장하는 개발자 커뮤니티
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-end gap-3">
-            <Button href={LINKS.googleForm} external size="lg">
+            <Button href={SITE_LINKS.applyForm} external size="lg">
               리드 신청하기
             </Button>
-            <Button href={LINKS.discord} external variant="secondary" size="lg">
+            <Button href={SITE_LINKS.discord} external variant="secondary" size="lg">
               디스코드 입장하기
             </Button>
           </div>
@@ -59,10 +54,10 @@ export default function AboutPage() {
             궁금한 점은 디스코드에서 운영진에게 직접 물어보세요.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button href={LINKS.googleForm} external size="lg">
+            <Button href={SITE_LINKS.applyForm} external size="lg">
               리드 신청하기
             </Button>
-            <Button href={LINKS.discord} external variant="secondary" size="lg">
+            <Button href={SITE_LINKS.discord} external variant="secondary" size="lg">
               디스코드 입장 →
             </Button>
           </div>

@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/src/components/common/Button";
-
-// TODO: 실제 구글폼 URL로 교체
-const GOOGLE_FORM_URL = "https://forms.gle/REPLACE_ME";
+import { SITE_LINKS } from "@/src/lib/links";
 
 export function HeroSection() {
   return (
@@ -31,7 +29,7 @@ export function HeroSection() {
         </p>
         <div className="mt-8">
           <Button
-            href={GOOGLE_FORM_URL}
+            href={SITE_LINKS.applyForm}
             external
             size="lg"
             className="!rounded-2xl !text-xl !px-10 !h-14"

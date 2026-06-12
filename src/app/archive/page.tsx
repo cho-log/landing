@@ -16,12 +16,7 @@ import { FeaturedStudySection } from "@/src/components/sections/archive/Featured
 import { StudyArchiveSection } from "@/src/components/sections/archive/StudyArchiveSection";
 import { TestimonialArchiveSection } from "@/src/components/sections/archive/TestimonialArchiveSection";
 import { LeadListSection } from "@/src/components/sections/archive/LeadListSection";
-
-// TODO: 실제 링크로 교체
-const LINKS = {
-  googleForm: "https://forms.gle/REPLACE_ME",
-  discord:    "https://discord.gg/REPLACE_ME",
-};
+import { SITE_LINKS } from "@/src/lib/links";
 
 export default function ArchivePage() {
   return (
@@ -50,11 +45,11 @@ export default function ArchivePage() {
             배운 것을 나누고 싶은 마음이 있다면, 그걸로 충분합니다.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Button href={LINKS.googleForm} external size="lg">
+            <Button href={SITE_LINKS.applyForm} external size="lg">
               리드 신청하기
             </Button>
             <Button
-              href={LINKS.discord}
+              href={SITE_LINKS.discord}
               external
               variant="secondary"
               size="lg"

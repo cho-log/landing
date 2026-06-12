@@ -5,9 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./Button";
-
-// TODO: 실제 구글폼 URL로 교체
-const GOOGLE_FORM_URL = "https://forms.gle/REPLACE_ME";
+import { SITE_LINKS } from "@/src/lib/links";
 
 const NAV_LINKS = [
   { label: "소개", href: "/about" },
@@ -92,7 +90,7 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">
+          <a href={SITE_LINKS.applyForm} target="_blank" rel="noopener noreferrer">
             <Button
               size="md"
               className={
@@ -152,7 +150,7 @@ export function Header() {
             </Link>
           ))}
           <div className="mt-2 border-t border-outline-variant pt-3 pb-1">
-            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">
+            <a href={SITE_LINKS.applyForm} target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="w-full">
                 리드 신청하기
               </Button>

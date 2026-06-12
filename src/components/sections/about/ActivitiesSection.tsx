@@ -1,4 +1,5 @@
 import { Button } from "@/src/components/common/Button";
+import { SITE_LINKS } from "@/src/lib/links";
 
 type Status = "recruiting" | "closed" | "seasonal";
 
@@ -26,7 +27,7 @@ const CORE_ACTIVITIES = [
     what: "14주 단위 리드 중심 학습 모임",
     who: "배운 것을 전하고 싶은 리드 + 스터디원",
     features: ["검증된 운영 가이드", "코드 리뷰 문화"],
-    cta: { label: "리드 신청하기", href: "https://forms.gle/REPLACE_ME", external: true, variant: "primary" as const },
+    cta: { label: "리드 신청하기", href: SITE_LINKS.applyForm, external: true, variant: "primary" as const },
   },
   {
     name: "초록해듀오",
