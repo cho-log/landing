@@ -26,7 +26,7 @@ export default function ArchivePage() {
         imageSrc="/archive-banner.JPG"
         title="아카이브"
         label="ARCHIVE"
-        objectPosition="center 40%"
+        objectPosition="center 45%"
       />
 
       {/* 1. 대표 스터디 */}
