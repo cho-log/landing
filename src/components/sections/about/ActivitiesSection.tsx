@@ -3,22 +3,10 @@ import { SITE_LINKS } from "@/src/lib/links";
 
 type Status = "active" | "periodic" | "irregular";
 
-const STATUS_CONFIG: Record<Status, { label: string; chipClass: string }> = {
-  active: {
-    label: "상시 모집",
-    chipClass:
-      "bg-secondary-container text-on-secondary-container border border-secondary-fixed-dim",
-  },
-  periodic: {
-    label: "반기 1회",
-    chipClass:
-      "border border-outline-variant bg-background/70 text-on-surface-variant backdrop-blur-sm",
-  },
-  irregular: {
-    label: "비정기",
-    chipClass:
-      "border border-outline-variant bg-background/50 text-outline backdrop-blur-sm",
-  },
+const STATUS_LABEL: Record<Status, string> = {
+  active: "상시 모집",
+  periodic: "반기 1회",
+  irregular: "비정기",
 };
 
 type CardLink = { label: string; href: string; external: boolean };
@@ -123,7 +111,6 @@ export function ActivitiesSection() {
 function ActivityCard({ activity }: { activity: Activity }) {
   const isHero = activity.spanClass.includes("row-span-2");
   const isStudyJump = activity.link?.href === "#study-detail";
-  const status = STATUS_CONFIG[activity.status];
 
   const cardClass = `group relative flex flex-col overflow-hidden rounded-xl p-6 transition-shadow ${activity.bgClass} ${activity.textClass} ${activity.spanClass}`;
 
@@ -137,15 +124,13 @@ function ActivityCard({ activity }: { activity: Activity }) {
         >
           {activity.name}
         </h3>
-        <span
-          className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${status.chipClass}`}
-        >
-          {status.label}
+        <span className="shrink-0 rounded-full bg-current/10 px-2.5 py-0.5 text-xs font-semibold text-current">
+          {STATUS_LABEL[activity.status]}
         </span>
       </div>
 
       <div
-        className={`pointer-events-none flex justify-center ${
+        className={`pointer-events-none flex flex-1 items-center justify-center ${
           isHero ? "mt-4 mb-2" : "mt-3 mb-1"
         }`}
         aria-hidden="true"
