@@ -6,4 +6,18 @@ export const SITE_LINKS = {
   projectAiDiscord:
     "https://discord.com/channels/1170170609511190528/1170171113544884345/1407913506799616030",
   springAiBootcamp: "https://github.com/cho-log/spring-ai-bootcamp-basic",
+  operationGuide:
+    "https://cho-log.notion.site/GoGcd-3ea1a541976083be82ee010a726e6161?source=copy_link",
+  cholockDocsManage: "https://github.com/cho-log/cholog-docs/tree/main/manage",
+  javaLearningTest: "https://github.com/cho-log/java-learning-test",
+  springLearningTest: "https://github.com/cho-log/spring-learning-test",
+  javaCalculatorMission:
+    "https://github.com/next-step/java-calculator-unit-playground",
+  javaRacingcarMission:
+    "https://github.com/next-step/java-racingcar-simple-playground",
+  javaLottoMission: "https://github.com/next-step/java-lotto-clean-playground",
+  javaLadderMission: "https://github.com/next-step/java-ladder-func-playground",
+  springRoomEscapeMission:
+    "https://github.com/cho-log/cholog-docs/tree/main/codereview",
+  reactMovieReviewMission: "https://github.com/cho-log/self-paced-react",
 } as const;

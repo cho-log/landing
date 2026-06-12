@@ -1,199 +1,506 @@
-// TODO: 실제 PR 링크로 교체
-const PR_EXAMPLES = [
+import { SITE_LINKS } from "@/src/lib/links";
+
+type CycleNode = {
+  emoji: string;
+  label: string;
+  top: string;
+  left: string;
+};
+
+const CYCLE_NODES: CycleNode[] = [
+  { emoji: "📚", label: "LMS 자료로 학습", top: "20%", left: "50%" },
+  { emoji: "🚀", label: "미션 수행", top: "65%", left: "76%" },
+  { emoji: "💬", label: "코드 리뷰", top: "65%", left: "24%" },
+];
+
+const LEARNING_ITEMS = [
   {
-    title: "도메인 객체와 DTO 분리, 어디까지 해야 할까",
-    href: "https://github.com/REPLACE_ME/pull/1",
+    label: "LMS 학습 자료",
+    desc: "각 미션 소개, 키워드 기반 학습 자료, 실습 자료를 제공합니다.",
   },
   {
-    title: "트랜잭션 경계 다시 그리기",
-    href: "https://github.com/REPLACE_ME/pull/2",
+    label: "미션",
+    desc: "학습한 내용을 직접 구현하며 익히는 미니 프로젝트 과제입니다.",
   },
   {
-    title: "테스트 더블, Stub vs Mock 언제 쓸까",
-    href: "https://github.com/REPLACE_ME/pull/3",
+    label: "학습 테스트",
+    desc: "기능을 직접 실행하고 변형해보며 이해도를 높이는 학습 방식입니다.",
+  },
+  {
+    label: "코드 리뷰 사이클",
+    desc: "미션을 구현하고 PR로 공유한 뒤, 리뷰어에게 코드 리뷰를 받으며 다양한 관점을 익힙니다.",
   },
 ];
 
-const COMPARISON_ROWS = [
+type Course = {
+  title: string;
+  target: string;
+  points: string[];
+};
+
+const COURSES: Course[] = [
   {
-    label: "운영 방식",
-    general: "매번 새로 설계",
-    chorok: "검증된 운영 가이드 제공",
+    title: "학습 테스트로 배우는 자바 기초",
+    target: "자바 언어를 이제 막 시작하는 입문자 대상",
+    points: [
+      "동작 검증을 위한 단위 테스트",
+      "간단한 콘솔 애플리케이션 구현",
+      "유지보수하기 좋은 클린 코드",
+      "함수형 프로그래밍 문법 활용",
+    ],
   },
   {
-    label: "코드 리뷰",
-    general: "선택사항",
-    chorok: "핵심 문화",
+    title: "학습 테스트로 배우는 스프링 입문",
+    target: "스프링을 처음 접하는 스프링 입문자 대상",
+    points: [
+      "웹 요청과 응답 처리를 위한 Spring MVC의 기능",
+      "데이터베이스 접근을 위한 Spring JDBC",
+      "스프링의 객체 관리 기능을 위한 Spring Core",
+      "기본적인 스프링 애플리케이션의 구조인 Layered Architecture",
+    ],
   },
   {
-    label: "회고",
-    general: "비정기적",
-    chorok: "정기 회고 루틴",
+    title: "학습 테스트로 배우는 스프링 기초",
+    target: "웹 프로젝트를 위한 배경 지식이 필요한 사람",
+    points: [
+      "Spring 기반의 인증을 구현",
+      "데이터베이스 접근을 위한 Spring Data JPA",
+      "스프링의 객체 그리고 외부 설정 관리를 위한 Spring Core",
+      "간단한 애플리케이션 운영을 위한 배포 스크립트",
+    ],
   },
   {
-    label: "리드 부담",
-    general: "모든 걸 혼자",
-    chorok: "운영진 + 가이드 + 동료 리드와 함께",
+    title: "미션으로 배우는 리액트 입문",
+    target: "React를 처음 시작하는 입문자 대상",
+    points: [
+      "JSX로 컴포넌트 선언과 사용",
+      "기초적인 목록·모달·폼 UI 구현",
+      "useState·useEffect를 활용한 상태 관리",
+      "React 설계 원칙을 고려한 코드 작성",
+    ],
   },
 ];
 
-const REVIEW_FLOW = [
-  { step: "01", label: "매주 미션 구현", desc: "주제에 맞는 미션을 각자 구현합니다." },
-  { step: "02", label: "PR 공유",        desc: "구현한 코드를 PR로 팀원에게 공유합니다." },
-  { step: "03", label: "리뷰로 다른 관점 만남", desc: "서로의 코드를 리뷰하며 새로운 시각을 얻습니다." },
+const LEARNING_TESTS = [
+  {
+    emoji: "☕",
+    label: "자바",
+    repo: "cho-log/java-learning-test",
+    href: SITE_LINKS.javaLearningTest,
+  },
+  {
+    emoji: "🍃",
+    label: "스프링",
+    repo: "cho-log/spring-learning-test",
+    href: SITE_LINKS.springLearningTest,
+  },
 ];
+
+type MissionGroup = {
+  category: string;
+  note?: string;
+  layout: "grid" | "single";
+  items: { emoji: string; label: string; href: string }[];
+};
+
+const MISSION_GROUPS: MissionGroup[] = [
+  {
+    category: "자바",
+    layout: "grid",
+    items: [
+      {
+        emoji: "🧮",
+        label: "계산기 미션",
+        href: SITE_LINKS.javaCalculatorMission,
+      },
+      {
+        emoji: "🏎️",
+        label: "자동차 경주 미션",
+        href: SITE_LINKS.javaRacingcarMission,
+      },
+      { emoji: "🎰", label: "로또 미션", href: SITE_LINKS.javaLottoMission },
+      { emoji: "🪜", label: "사다리 미션", href: SITE_LINKS.javaLadderMission },
+    ],
+  },
+  {
+    category: "스프링",
+    layout: "single",
+    items: [
+      {
+        emoji: "🔑",
+        label: "방탈출 미션",
+        href: SITE_LINKS.springRoomEscapeMission,
+      },
+    ],
+  },
+  {
+    category: "리액트",
+    layout: "single",
+    items: [
+      {
+        emoji: "🎬",
+        label: "영화 리뷰 미션",
+        href: SITE_LINKS.reactMovieReviewMission,
+      },
+    ],
+  },
+];
+
+type JoinStep = {
+  num: string;
+  title: string;
+  desc: React.ReactNode;
+};
+
+const JOIN_STEPS: JoinStep[] = [
+  {
+    num: "01",
+    title: "스터디원과 리뷰어 모으기",
+    desc: "학습을 함께할 스터디원과, 리뷰를 맡아줄 리뷰어를 모읍니다.",
+  },
+  {
+    num: "02",
+    title: "구글폼으로 개설 신청",
+    desc: (
+      <>
+        <InlineLink href={SITE_LINKS.operationGuide}>운영 가이드</InlineLink>와{" "}
+        <InlineLink href={SITE_LINKS.cholockDocsManage}>운영 매뉴얼</InlineLink>
+        을 참고해 스터디를 계획한 후, 구글폼으로 개설을 신청합니다.
+      </>
+    ),
+  },
+  {
+    num: "03",
+    title: "선발 후 자료 권한 제공",
+    desc: "LMS 학습 자료 사용 권한과 추가 운영 가이드를 받고, 디스코드 스터디 리드 채널에서 운영 도움을 받습니다.",
+  },
+  {
+    num: "04",
+    title: "스터디 시작",
+    desc: "미션과 리뷰를 중심으로 스터디를 운영합니다.",
+  },
+];
+
+function InlineLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-semibold text-secondary underline underline-offset-4 transition-colors hover:text-primary"
+    >
+      {children}
+    </a>
+  );
+}
 
 export function StudyDetailSection() {
   return (
-    <section
-      id="study-detail"
-      className="scroll-mt-24 bg-background py-24"
-    >
-      <div className="mx-auto max-w-5xl px-4 md:px-6">
+    <>
+      {/* 밴드 1 — 인트로 + 학습 방식 (A: bg-background) */}
+      <section id="study-detail" className="scroll-mt-24 bg-background py-24">
+        <div className="mx-auto max-w-5xl px-4 md:px-6">
+          <header>
+            <p className="text-xs font-semibold uppercase tracking-widest text-secondary">
+              STUDY DETAIL
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
+              초록스터디 자세히 알아보기
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-on-surface-variant">
+              초록스터디는 자바·스프링·리액트 입문자를 위한 미션 기반
+              스터디입니다.
+            </p>
+          </header>
 
-        <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-          초록스터디가 다른 이유
-        </h2>
-        <p className="mt-3 text-sm text-on-surface-variant">
-          일반 개발 스터디와 초록스터디를 나란히 놓고 비교해봤습니다.
-        </p>
-
-        <div className="mt-8 overflow-x-auto rounded-lg border border-outline-variant">
-          <table className="w-full min-w-[520px] text-sm">
-            <thead>
-              <tr className="border-b border-outline-variant bg-surface-container-low">
-                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-outline">
-                  항목
-                </th>
-                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-outline">
-                  일반 개발 스터디
-                </th>
-                <th className="px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-primary">
-                  🟢 초록스터디
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-outline-variant bg-surface-container-lowest">
-              {COMPARISON_ROWS.map((row) => (
-                <tr key={row.label} className="transition-colors hover:bg-secondary-container/40">
-                  <td className="px-5 py-4 font-medium text-on-surface">
-                    {row.label}
-                  </td>
-                  <td className="px-5 py-4 text-on-surface-variant">
-                    {row.general}
-                  </td>
-                  <td className="px-5 py-4 font-semibold text-primary">
-                    {row.chorok}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {/* Block A — 학습 방식 */}
+          <div className="mt-16 grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12">
+            <LearningCycleGraphic />
+            <div>
+              <ul className="flex flex-col gap-4">
+                {LEARNING_ITEMS.map((item) => (
+                  <li
+                    key={item.label}
+                    className="text-sm leading-relaxed md:text-base"
+                  >
+                    <strong className="font-semibold text-on-surface">
+                      {item.label}
+                    </strong>
+                    <span className="text-on-surface-variant">
+                      {" "}
+                      — {item.desc}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold tracking-tight text-on-surface">
-            코드 리뷰 문화
+      {/* 밴드 2 — 4개 과정 (B: bg-surface-container-low) */}
+      <section className="bg-surface-container-low py-20">
+        <div className="mx-auto max-w-5xl px-4 md:px-6">
+          <h3 className="text-2xl font-bold tracking-tight text-on-surface md:text-3xl">
+            초록스터디 과정
           </h3>
-          <p className="mt-2 text-sm text-on-surface-variant">
-            초록스터디의 핵심은 코드를 함께 읽고, 함께 성장하는 것입니다.
+          <p className="mt-3 text-sm text-on-surface-variant md:text-base">
+            현재 자바·스프링·리액트 영역의 4개 과정이 운영되고 있습니다.
           </p>
-
-          <div className="mt-8 flex flex-col gap-0 md:flex-row">
-            {REVIEW_FLOW.map((item, i) => (
-              <div key={item.step} className="flex flex-1 flex-col md:flex-row">
-                <div className="relative flex flex-1 flex-col gap-2 rounded-lg bg-secondary-container px-6 py-5">
-                  <span className="text-xs font-bold tracking-widest text-secondary">
-                    STEP {item.step}
-                  </span>
-                  <p className="font-semibold text-on-secondary-container">{item.label}</p>
-                  <p className="text-xs leading-relaxed text-on-surface-variant">
-                    {item.desc}
-                  </p>
-                </div>
-                {i < REVIEW_FLOW.length - 1 && (
-                  <div className="flex items-center justify-center px-2 py-2 text-secondary-fixed-dim md:py-0">
-                    <svg
-                      className="hidden h-5 w-5 md:block"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <svg
-                      className="h-5 w-5 rotate-90 md:hidden"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </div>
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+            {COURSES.map((course) => (
+              <CourseCard key={course.title} course={course} />
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-10">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-outline">
-              실제 PR 사례
-            </p>
-            <ul className="flex flex-col gap-3">
-              {PR_EXAMPLES.map((pr) => (
-                <li key={pr.title}>
+      {/* 밴드 3 — 학습 자료 (A: bg-background, 카드 대비 위해 필수) */}
+      <section className="bg-background py-20">
+        <div className="mx-auto max-w-5xl px-4 md:px-6">
+          <h3 className="text-2xl font-bold tracking-tight text-on-surface md:text-3xl">
+            스터디에 쓰이는 자료
+          </h3>
+          <p className="mt-3 text-sm text-on-surface-variant md:text-base">
+            공개된 자료는 누구나 둘러볼 수 있고, LMS는 스터디 리드로 선발되면
+            사용 권한이 제공됩니다.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+            <LearningTestCard />
+            <MissionRepoCard />
+          </div>
+        </div>
+      </section>
+
+      {/* 밴드 4 — 참여 방법 (B: bg-surface-container-low) */}
+      <section className="bg-surface-container-low py-20">
+        <div className="mx-auto max-w-5xl px-4 md:px-6">
+          <h3 className="text-2xl font-bold tracking-tight text-on-surface md:text-3xl">
+            어떻게 참여할 수 있나요
+          </h3>
+          <p className="mt-3 text-sm text-on-surface-variant md:text-base">
+            스터디원과 리뷰어를 모아 신청한 뒤, 선발되면 자료와 운영 가이드를
+            받아 스터디를 시작합니다.
+          </p>
+          <ol className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-4">
+            {JOIN_STEPS.map((step) => (
+              <li
+                key={step.num}
+                className="flex flex-col rounded-lg border border-outline-variant bg-surface-container-lowest p-6"
+              >
+                <span className="text-xs font-bold tracking-widest text-secondary">
+                  STEP {step.num}
+                </span>
+                <h4 className="mt-3 text-base font-semibold text-on-surface">
+                  {step.title}
+                </h4>
+                <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
+                  {step.desc}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function LearningCycleGraphic() {
+  return (
+    <div
+      className="relative mx-auto aspect-square w-full max-w-[320px]"
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 200 200"
+        className="absolute inset-0 h-full w-full text-secondary"
+      >
+        <defs>
+          <marker
+            id="cycle-arrow"
+            markerWidth="6"
+            markerHeight="6"
+            refX="3"
+            refY="3"
+            orient="auto"
+          >
+            <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
+          </marker>
+        </defs>
+        <g
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.5"
+        >
+          <path
+            d="M 115 45 A 60 60 0 0 1 155 115"
+            markerEnd="url(#cycle-arrow)"
+          />
+          <path
+            d="M 150 130 A 60 60 0 0 1 50 130"
+            markerEnd="url(#cycle-arrow)"
+          />
+          <path
+            d="M 45 115 A 60 60 0 0 1 85 45"
+            markerEnd="url(#cycle-arrow)"
+          />
+        </g>
+      </svg>
+      {CYCLE_NODES.map((node) => (
+        <div
+          key={node.label}
+          className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2"
+          style={{ top: node.top, left: node.left }}
+        >
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-secondary-container text-2xl shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
+            {node.emoji}
+          </span>
+          <span className="whitespace-nowrap text-xs font-semibold text-on-surface">
+            {node.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CourseCard({ course }: { course: Course }) {
+  return (
+    <article className="flex flex-col rounded-lg border border-outline-variant bg-surface-container-lowest p-6">
+      <h4 className="text-xl font-bold tracking-tight text-on-surface">
+        {course.title}
+      </h4>
+      <span className="mt-3 inline-flex w-fit items-center rounded-full bg-secondary/10 px-2.5 py-1 text-xs font-semibold text-secondary">
+        {course.target}
+      </span>
+      <ul className="mt-5 flex flex-col gap-3">
+        {course.points.map((point) => (
+          <li key={point} className="flex items-start gap-3">
+            <span
+              className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-secondary-container"
+              aria-hidden="true"
+            >
+              <svg
+                className="h-3 w-3 text-on-secondary-container"
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M2 6l3 3 5-5" />
+              </svg>
+            </span>
+            <span className="text-sm leading-relaxed text-on-surface-variant">
+              {point}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function LearningTestCard() {
+  return (
+    <article className="flex flex-col rounded-lg bg-surface-container p-6">
+      <h4 className="text-lg font-semibold text-on-surface">
+        학습 테스트 저장소
+      </h4>
+      <ul className="mt-5 flex flex-col gap-3">
+        {LEARNING_TESTS.map((test) => (
+          <li key={test.repo}>
+            <a
+              href={test.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 text-sm font-medium text-on-surface transition-colors hover:text-primary"
+            >
+              <span className="text-base" aria-hidden="true">
+                {test.emoji}
+              </span>
+              <div className="flex min-w-0 flex-1 flex-col">
+                <span>{test.label}</span>
+                <span className="truncate font-mono text-xs font-normal text-on-surface-variant">
+                  {test.repo}
+                </span>
+              </div>
+              <span
+                className="shrink-0 text-secondary transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              >
+                ↗
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function MissionRepoCard() {
+  return (
+    <article className="flex flex-col rounded-lg bg-surface-container p-6">
+      <h4 className="text-lg font-semibold text-on-surface">미션 저장소</h4>
+      <div className="mt-5 grid gap-x-4 gap-y-5 sm:grid-cols-2">
+        {MISSION_GROUPS.map((group) => (
+          <div
+            key={group.category}
+            className={group.layout === "grid" ? "sm:col-span-2" : ""}
+          >
+            <div className="flex items-baseline gap-2">
+              <span className="text-xs font-semibold uppercase tracking-widest text-outline">
+                {group.category}
+              </span>
+              {group.note && (
+                <span className="text-xs text-on-surface-variant">
+                  {group.note}
+                </span>
+              )}
+            </div>
+            <ul
+              className={`mt-2.5 ${
+                group.layout === "grid"
+                  ? "grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2"
+                  : "flex flex-col gap-2"
+              }`}
+            >
+              {group.items.map((item) => (
+                <li key={item.href}>
                   <a
-                    href={pr.href}
+                    href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-4 rounded-md border border-outline-variant bg-surface-container-lowest px-5 py-4 transition-colors hover:border-secondary-fixed-dim hover:bg-secondary-container"
+                    className="group inline-flex items-center gap-2 text-sm font-medium text-on-surface transition-colors hover:text-primary"
                   >
-                    <div className="flex items-center gap-3">
-                      <svg
-                        className="h-4 w-4 shrink-0 text-secondary-fixed-dim"
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z" />
-                      </svg>
-                      <span className="text-sm font-medium text-on-surface group-hover:text-primary">
-                        {pr.title}
-                      </span>
-                    </div>
-                    <svg
-                      className="h-4 w-4 shrink-0 text-outline group-hover:text-secondary"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
+                    <span className="text-base" aria-hidden="true">
+                      {item.emoji}
+                    </span>
+                    <span>{item.label}</span>
+                    <span
+                      className="text-secondary transition-transform group-hover:translate-x-0.5"
                       aria-hidden="true"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z"
-                        clipRule="evenodd"
-                      />
-                      <path
-                        fillRule="evenodd"
-                        d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553l-9.056 8.194a.75.75 0 0 0-.053 1.06Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                      ↗
+                    </span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-
+        ))}
       </div>
-    </section>
+    </article>
   );
 }

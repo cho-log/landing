@@ -16,7 +16,6 @@ import { PageBanner } from "@/src/components/common/PageBanner";
 import { IdentitySection } from "@/src/components/sections/about/IdentitySection";
 import { ActivitiesSection } from "@/src/components/sections/about/ActivitiesSection";
 import { StudyDetailSection } from "@/src/components/sections/about/StudyDetailSection";
-import { GuideSection } from "@/src/components/sections/about/GuideSection";
 import { SITE_LINKS } from "@/src/lib/links";
 
 export default function AboutPage() {
@@ -34,8 +33,6 @@ export default function AboutPage() {
       <ActivitiesSection />
 
       <StudyDetailSection />
-
-      <GuideSection />
 
       <section className="bg-background py-24">
         <div className="mx-auto max-w-2xl px-4 text-center md:px-6">
