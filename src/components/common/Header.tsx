@@ -93,7 +93,7 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <a href={SITE_LINKS.applyForm} target="_blank" rel="noopener noreferrer">
+          <a href={SITE_LINKS.discord} target="_blank" rel="noopener noreferrer">
             <Button
               size="md"
               className={
@@ -102,7 +102,7 @@ export function Header() {
                   : ""
               }
             >
-              리드 신청하기
+              디스코드 입장
             </Button>
           </a>
         </div>
@@ -153,9 +153,9 @@ export function Header() {
             </Link>
           ))}
           <div className="mt-2 border-t border-outline-variant pt-3 pb-1">
-            <a href={SITE_LINKS.applyForm} target="_blank" rel="noopener noreferrer">
+            <a href={SITE_LINKS.discord} target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="w-full">
-                리드 신청하기
+                디스코드 입장
               </Button>
             </a>
           </div>

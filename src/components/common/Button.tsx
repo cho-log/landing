@@ -35,10 +35,11 @@ const variantClass: Record<Variant, string> = {
     "group/ghost text-primary hover:text-primary-container hover:font-semibold focus-visible:ring-secondary-fixed-dim",
 };
 
+/* DESIGN.md Shapes: 액션 버튼은 full pill radius. */
 const sizeClass: Record<Size, string> = {
-  sm: "h-8 px-4 text-sm rounded-md",
-  md: "h-10 px-6 text-sm rounded-lg",
-  lg: "h-12 px-8 text-base rounded-lg",
+  sm: "h-8 px-5 text-sm rounded-full",
+  md: "h-10 px-6 text-sm rounded-full",
+  lg: "h-12 px-8 text-base rounded-full",
 };
 
 const ghostOverride = "h-auto px-0 rounded-none";

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Button } from "@/src/components/common/Button";
-import { SITE_LINKS } from "@/src/lib/links";
 
 export function HeroSection() {
   return (
@@ -29,12 +28,11 @@ export function HeroSection() {
         </p>
         <div className="mt-8">
           <Button
-            href={SITE_LINKS.applyForm}
-            external
+            href="#intro"
             size="lg"
-            className="!rounded-2xl !text-xl !px-10 !h-14"
+            className="!bg-white/10 !text-white !border !border-white/40 backdrop-blur-sm hover:!bg-white/20 !px-10"
           >
-            스터디 리드 신청하기
+            더보기
           </Button>
         </div>
       </div>

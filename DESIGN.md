@@ -172,15 +172,13 @@ Backdrop blurs (10px - 20px) are used sparingly for navigation bars to maintain 
 
 ## Shapes
 
-The shape language is defined by **Medium Roundedness**. This strikes a balance between the clinical feel of sharp corners and the overly casual nature of pill shapes.
-
-Standard components (buttons, input fields) use a 0.5rem (8px) radius. Larger containers, such as content cards, utilize 1rem (16px) to soften the overall visual footprint. This consistency in rounding communicates the "polite and warm" brand personality.
+The shape language pairs **fully-rounded (pill) actions** with **medium-rounded surfaces**. Interactive buttons use a full pill radius (9999px) for a friendly, approachable feel that invites action. Input fields use a 0.5rem (8px) radius, and larger containers such as content cards use 1rem (16px) to soften the overall visual footprint. This combination — soft, inviting actions over calm, medium-rounded surfaces — communicates the "polite and warm" brand personality.
 
 ## Components
 
-- **Buttons:** Primary buttons are solid Deep Forest green with white text. Secondary buttons use a Soft Sage ghost style (outline and text only). Padding is generous horizontally to create a "prominent but minimal" look.
+- **Buttons:** Fully-rounded (pill) shape. Primary buttons are solid Deep Forest green with white text. Secondary buttons use a Soft Sage ghost style (outline and text only). Padding is generous horizontally to create a "prominent but minimal" look.
 - **Cards:** White background, Level 1 shadow, and 16px corner radius. Internal padding should be at least 24px (LG) to ensure a premium, airy feel.
-- **Chips:** Used for community tags. These should have a very light sage background with Deep Forest text, using a pill shape to distinguish them from actionable buttons.
+- **Chips:** Used for community tags. These have a very light sage background with Deep Forest text in a small pill. They share the pill silhouette with buttons but are distinguished by their smaller size, lighter sage fill, and non-interactive role (tags, not actions).
 - **Input Fields:** Minimalist design with a 1px soft grey border. Upon focus, the border transitions to Soft Sage with a subtle outer glow. Labels are always placed above the field in `label-md` style.
 - **Lists:** Clean, border-less lists with generous vertical spacing (16px) between items. Use subtle dividers only when content density is high.
 - **Community Feed:** A specialized component utilizing a vertical timeline or masonry grid that emphasizes imagery and thoughtful typography over heavy UI "chrome."
