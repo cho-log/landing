@@ -3,6 +3,7 @@
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Button } from "@/src/components/common/Button";
+import { SectionHeader } from "@/src/components/common/SectionHeader";
 import type { Testimonial } from "@/src/types";
 import { testimonials } from "@/src/data/testimonials";
 import { getDailySeed, seededShuffle } from "@/src/lib/dailySeed";
@@ -205,10 +206,8 @@ export function TestimonialSection() {
 
   return (
     <section className="overflow-hidden bg-background py-24">
-      <div className="mx-auto mb-12 max-w-4xl px-4 text-center md:px-6">
-        <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-          후기로 보는 초록
-        </h2>
+      <div className="mx-auto mb-12 max-w-4xl px-4 md:px-6">
+        <SectionHeader align="center" eyebrow="REVIEWS" title="후기로 보는 초록" />
       </div>
 
       <ScrollTrack items={featured} />

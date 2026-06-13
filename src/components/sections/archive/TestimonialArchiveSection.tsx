@@ -1,5 +1,6 @@
 import type { Testimonial, TestimonialRole } from "@/src/types";
 import { testimonials } from "@/src/data/testimonials";
+import { SectionHeader } from "@/src/components/common/SectionHeader";
 import { TestimonialDeepLink } from "./TestimonialDeepLink";
 
 /* 역할별 칩 색 (Tailwind JIT가 정적으로 인식하도록 전체 클래스명 명시) */
@@ -51,17 +52,12 @@ export function TestimonialArchiveSection() {
     >
       <TestimonialDeepLink />
       <div className="mx-auto max-w-5xl px-4 md:px-6">
-        <div className="mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-secondary">
-            MEMBER VOICES
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-            초록의 모든 후기
-          </h2>
-          <p className="mt-3 text-sm text-on-surface-variant">
-            리드 · 스터디원 · 리뷰어 — 함께한 사람들이 남긴 이야기
-          </p>
-        </div>
+        <SectionHeader
+          className="mb-12"
+          eyebrow="MEMBER VOICES"
+          title="초록의 모든 후기"
+          description="리드 · 스터디원 · 리뷰어 — 함께한 사람들이 남긴 이야기"
+        />
 
         <div className="gap-5 sm:columns-2 lg:columns-3 [column-fill:_balance]">
           {testimonials.map((t) => (

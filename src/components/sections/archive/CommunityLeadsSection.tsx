@@ -1,5 +1,6 @@
 import { leads } from "@/src/data/leads";
 import type { Lead } from "@/src/types";
+import { SectionHeader } from "@/src/components/common/SectionHeader";
 import { LeadAvatar } from "./LeadAvatar";
 
 /* ── 연도별 그룹핑 (최신 연도 먼저, 그룹 내 이름 가나다순 정렬) ──── */
@@ -60,12 +61,11 @@ export function CommunityLeadsSection() {
   return (
     <section className="bg-background py-24">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
-        <h2 className="text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-          함께한 모임 &amp; 리드
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-on-surface-variant">
-          스터디를 이끈 사람들
-        </p>
+        <SectionHeader
+          eyebrow="PEOPLE"
+          title="함께한 모임 & 리드"
+          description="스터디를 이끈 사람들"
+        />
 
         <div className="mt-10 flex flex-col gap-10">
           {grouped.map(([year, yearLeads]) => (

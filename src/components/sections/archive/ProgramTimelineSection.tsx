@@ -1,5 +1,6 @@
 import type { Program } from "@/src/types";
 import { programs } from "@/src/data/programs";
+import { SectionHeader } from "@/src/components/common/SectionHeader";
 
 /* colorKey → accent 클래스 (Tailwind JIT가 정적으로 인식하도록 전체 클래스명 명시) */
 const ACCENT: Record<Program["colorKey"], { dot: string; period: string }> = {
@@ -53,15 +54,11 @@ export function ProgramTimelineSection() {
   return (
     <section className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-3xl px-4 md:px-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-secondary">
-          OUR JOURNEY
-        </p>
-        <h2 className="mt-3 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-          초록이 걸어온 길
-        </h2>
-        <p className="mt-3 text-sm text-on-surface-variant">
-          스터디에서 시작해, 함께 배우고 나누는 방식을 꾸준히 넓혀왔습니다.
-        </p>
+        <SectionHeader
+          eyebrow="OUR JOURNEY"
+          title="초록이 걸어온 길"
+          description="스터디에서 시작해, 함께 배우고 나누는 방식을 꾸준히 넓혀왔습니다."
+        />
 
         <ol className="mt-12">
           {programs.map((program, i) => (

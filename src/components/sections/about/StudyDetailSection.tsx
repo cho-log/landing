@@ -1,4 +1,5 @@
 import { SITE_LINKS } from "@/src/lib/links";
+import { SectionHeader } from "@/src/components/common/SectionHeader";
 
 type CycleNode = {
   emoji: string;
@@ -206,18 +207,11 @@ export function StudyDetailSection() {
       {/* 밴드 1 — 인트로 + 학습 방식 (A: bg-background) */}
       <section id="study-detail" className="scroll-mt-24 bg-background py-24">
         <div className="mx-auto max-w-5xl px-4 md:px-6">
-          <header>
-            <p className="text-xs font-semibold uppercase tracking-widest text-secondary">
-              STUDY DETAIL
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-              초록스터디 자세히 알아보기
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-on-surface-variant">
-              초록스터디는 자바·스프링·리액트 입문자를 위한 미션 기반
-              스터디입니다.
-            </p>
-          </header>
+          <SectionHeader
+            eyebrow="STUDY DETAIL"
+            title="초록스터디 자세히 알아보기"
+            description="초록스터디는 자바·스프링·리액트 입문자를 위한 미션 기반 스터디입니다."
+          />
 
           {/* Block A — 학습 방식 */}
           <div className="mt-14 grid grid-cols-1 items-center gap-10 md:grid-cols-[240px_1fr] md:gap-14">

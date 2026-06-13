@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/src/components/common/Button";
+import { SectionHeader } from "@/src/components/common/SectionHeader";
 
 const STATS = [
   { value: 434, label: "디스코드 멤버" },
@@ -131,12 +132,7 @@ export function HistorySection() {
               active ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-secondary">
-              SINCE 2023.11
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
-              숫자로 보는 초록
-            </h2>
+            <SectionHeader eyebrow="SINCE 2023.11" title="숫자로 보는 초록" />
             {/* TODO: 사진 준비되면 image-sources/history-growth.png 교체 후 npm run optimize:images (초록이 자라나는 과정) */}
             <Image
               src="/history-growth.webp"

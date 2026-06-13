@@ -40,7 +40,7 @@ export function IntroSection() {
           ref={textRef}
           className="translate-y-8 opacity-0 transition-all duration-700 ease-out"
         >
-          <p className="text-sm font-semibold tracking-widest text-secondary uppercase">
+          <p className="text-xs font-semibold uppercase tracking-widest text-secondary">
             ABOUT CHOLOG
           </p>
           <p className="mt-4 text-2xl leading-relaxed font-semibold text-balance text-on-surface md:text-3xl">

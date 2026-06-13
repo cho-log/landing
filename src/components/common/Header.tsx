@@ -54,7 +54,21 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
-        <Link href="/" aria-label="초록 홈" className="flex items-center">
+        <Link
+          href="/"
+          aria-label="초록 홈"
+          className="flex items-center"
+          onClick={(e) => {
+            // 이미 메인 페이지면 같은 경로 라우팅이 무시돼 스크롤이 안 된다 — 직접 맨 위로
+            if (pathname === "/") {
+              e.preventDefault();
+              const reduce = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+              ).matches;
+              window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+            }
+          }}
+        >
           <Image
             src="/logo.webp"
             alt="초록"

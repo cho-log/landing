@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionHeader } from "@/src/components/common/SectionHeader";
 import { SITE_LINKS } from "@/src/lib/links";
 
 type Status = "active" | "periodic" | "irregular";
@@ -106,11 +107,17 @@ export function ActivitiesSection() {
   return (
     <section className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
-        <h2 className="max-w-2xl text-3xl font-bold leading-snug tracking-tight text-on-surface md:text-4xl">
-          초록에는 다양한 방식으로
-          <br />
-          함께 배울 수 있는 활동들이 있습니다.
-        </h2>
+        <SectionHeader
+          eyebrow="ACTIVITIES"
+          titleClassName="max-w-2xl leading-snug"
+          title={
+            <>
+              초록에는 다양한 방식으로
+              <br />
+              함께 배울 수 있는 활동들이 있습니다.
+            </>
+          }
+        />
 
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6 md:gap-5">
           {ACTIVITIES.map((activity) => (
