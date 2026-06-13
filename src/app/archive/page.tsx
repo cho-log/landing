@@ -41,15 +41,15 @@ export default function ArchivePage() {
       {/* 4. 후기 모음 */}
       <TestimonialArchiveSection />
 
-      <section className="bg-primary py-24 text-on-primary">
+      <section className="bg-surface-container py-24">
         <div className="mx-auto max-w-2xl px-4 text-center md:px-6">
-          <p className="text-xs font-semibold uppercase tracking-widest text-inverse-primary">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
             다음 초록스터디
           </p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
             다음 사람은 당신일 수 있습니다.
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-on-primary-container">
+          <p className="mt-4 text-sm leading-relaxed text-on-surface-variant">
             배운 것을 나누고 싶은 마음이 있다면, 그걸로 충분합니다.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -61,7 +61,6 @@ export default function ArchivePage() {
               external
               variant="secondary"
               size="lg"
-              className="border-inverse-primary text-inverse-primary hover:bg-primary-container"
             >
               디스코드 입장 →
             </Button>
