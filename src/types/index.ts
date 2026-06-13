@@ -3,6 +3,7 @@ export interface Program {
   id: string;
   name: string;
   period: string;        // 예: "2023.11 – 현재"
+  summary?: string;      // 아카이브 타임라인용 회고 캡션 (소개 문구와 다른 기록 톤)
   description: string;   // 소개 문구
   audience?: string;     // 대상
   metric?: string;       // 규모 (예: "25개 스터디", "누적 170명")
