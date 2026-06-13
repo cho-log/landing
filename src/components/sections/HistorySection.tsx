@@ -15,7 +15,7 @@ const STATS = [
 const DELAY = ["delay-0", "delay-100", "delay-200", "delay-300"];
 
 /* ── 카운트업 훅 ─────────────────────────────────────────────── */
-function useCountUp(target: number, active: boolean, duration = 1400) {
+function useCountUp(target: number, active: boolean, duration = 1800) {
   const [count, setCount] = useState(0);
   const rafRef = useRef<number>(0);
 
@@ -27,8 +27,8 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
     const tick = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // easeOutQuart — 빠르게 올라오다 부드럽게 착지
-      const eased = 1 - Math.pow(1 - progress, 4);
+      // easeOutCubic — 앞쪽 쏠림이 덜해 숫자가 또렷이 올라가는 게 보임
+      const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.round(eased * target));
 
       if (progress < 1) {
@@ -48,14 +48,19 @@ function StatCard({
   value,
   label,
   index,
-  active,
-}: (typeof STATS)[number] & { index: number; active: boolean }) {
-  const count = useCountUp(value, active);
+  revealed,
+  counting,
+}: (typeof STATS)[number] & {
+  index: number;
+  revealed: boolean;
+  counting: boolean;
+}) {
+  const count = useCountUp(value, counting);
 
   return (
     <div
       className={`flex flex-col items-center gap-2 rounded-lg bg-surface-container-lowest px-4 py-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] sm:px-6 sm:py-8 ${DELAY[index]} ${
-        active ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+        revealed ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
       <p className="flex items-center gap-1 tabular-nums">
@@ -74,8 +79,11 @@ function StatCard({
 /* ── 섹션 ────────────────────────────────────────────────────── */
 export function HistorySection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [active, setActive] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(false); // 섹션 등장 reveal
+  const [countActive, setCountActive] = useState(false); // 카운트업
 
+  /* 섹션 진입 → 좌측 컬럼·버튼 등장 */
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -84,6 +92,25 @@ export function HistorySection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setActive(true);
+          observer.disconnect(); // 한 번만 실행
+        }
+      },
+      { threshold: 0.3 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  /* 숫자 카드가 화면에 들어오면 → 카운트업 시작 (속도는 duration으로 조절) */
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCountActive(true);
           observer.disconnect(); // 한 번만 실행
         }
       },
@@ -122,13 +149,14 @@ export function HistorySection() {
           </div>
 
           {/* 우측 — 2×2 숫자 카드 */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+          <div ref={statsRef} className="grid grid-cols-2 gap-4 sm:gap-6">
             {STATS.map((stat, index) => (
               <StatCard
                 key={stat.label}
                 {...stat}
                 index={index}
-                active={active}
+                revealed={active}
+                counting={countActive}
               />
             ))}
           </div>
