@@ -8,15 +8,16 @@ import { archiveStats } from "@/src/data/stats";
    커서가 가까이 가면 더미를 가볍게 휘젓고 다시 가라앉는다. 새 의존성 없이 단일 rAF 물리 시뮬.
    숫자는 최종값을 단 채 낙하한다(낙하 자체가 연출). reduced-motion이면 동일 물리를 동기로 돌려 정적 안착(접근성). */
 
-/* 초록 그라데이션: 값이 클수록 진한 초록(색 = 크기). 진→연 7단계 램프. */
+/* 초록 그라데이션: 디자인 시스템 초록 7토큰(surface-tint 포함)을 명도순으로 정렬한 램프.
+   값이 클수록 진한 초록 — 명도가 단조롭게 진→연으로 흐른다. */
 const GREEN_RAMP: { bg: string; text: string }[] = [
-  { bg: "bg-primary", text: "text-on-primary" }, // 가장 큰 값
-  { bg: "bg-secondary", text: "text-on-secondary" },
-  { bg: "bg-primary-container", text: "text-white" },
-  { bg: "bg-secondary-container", text: "text-on-secondary-container" },
-  { bg: "bg-primary-fixed-dim", text: "text-on-primary-fixed" },
-  { bg: "bg-primary-fixed", text: "text-on-primary-fixed" },
-  { bg: "bg-secondary-fixed", text: "text-on-secondary-fixed" }, // 가장 작은 값
+  { bg: "bg-primary", text: "text-on-primary" }, // #163826 가장 큰 값
+  { bg: "bg-primary-container", text: "text-on-primary" }, // #2d4f3c
+  { bg: "bg-surface-tint", text: "text-white" }, // #436651
+  { bg: "bg-secondary", text: "text-on-secondary" }, // #4a654f
+  { bg: "bg-secondary-fixed-dim", text: "text-on-secondary-fixed" }, // #b0ceb4
+  { bg: "bg-secondary-container", text: "text-on-secondary-container" }, // #c9e7cc
+  { bg: "bg-primary-fixed", text: "text-on-primary-fixed" }, // #c5ecd2 가장 작은 값
 ];
 
 /* 값 내림차순 랭크(0=최대) → 램프 인덱스. 동률은 안정적으로 입력 순서 유지. */
