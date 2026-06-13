@@ -210,7 +210,7 @@ function ActivityCard({ activity }: { activity: Activity }) {
           href={activity.link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute inset-0"
+          className="absolute inset-0 z-10"
           aria-label={`${activity.name} — ${activity.link.label}`}
         />
         {inner}
