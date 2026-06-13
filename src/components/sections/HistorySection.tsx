@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { Button } from "@/src/components/common/Button";
 
 const STATS = [
   { value: 434, label: "디스코드 멤버" },
@@ -131,6 +132,17 @@ export function HistorySection() {
               />
             ))}
           </div>
+        </div>
+
+        {/* 하단 — 아카이브로 잇는 진입점 */}
+        <div
+          className={`mt-12 flex justify-center transition-all duration-700 ease-out delay-300 ${
+            active ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+        >
+          <Button href="/archive" variant="ghost" size="lg">
+            아카이브에서 더 보기
+          </Button>
         </div>
       </div>
     </section>
