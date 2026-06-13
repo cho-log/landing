@@ -6,7 +6,7 @@ import { archiveStats } from "@/src/data/stats";
 /* ── 네트워크 수치: 떨어져 쌓이는 버블 ───────────────────────────
    값 비례 반지름의 원 7개가 위에서 떨어져 바닥에 쌓인다(중력 + 원-원 충돌 + 벽/바닥).
    커서가 가까이 가면 더미를 가볍게 휘젓고 다시 가라앉는다. 새 의존성 없이 단일 rAF 물리 시뮬.
-   진입 시 낙하 + count-up. reduced-motion이면 동일 물리를 동기로 돌려 정적 안착(접근성). */
+   숫자는 최종값을 단 채 낙하한다(낙하 자체가 연출). reduced-motion이면 동일 물리를 동기로 돌려 정적 안착(접근성). */
 
 /* 초록 그라데이션: 값이 클수록 진한 초록(색 = 크기). 진→연 7단계 램프. */
 const GREEN_RAMP: { bg: string; text: string }[] = [
@@ -49,24 +49,6 @@ const STIR = 16000; // 커서 휘젓기 세기 — 중력 이겨 가볍게 흩�
 const VMAX = 1900; // 속도 상한
 const SLEEP_V = 4; // 정지 임계
 const SETTLE_STEPS = 480; // reduced-motion 정적 안착 스텝 수
-
-function useCountUp(target: number, active: boolean, duration = 1400) {
-  const [count, setCount] = useState(0);
-  const rafRef = useRef<number>(0);
-  useEffect(() => {
-    if (!active) return;
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.round(eased * target));
-      if (progress < 1) rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [active, target, duration]);
-  return count;
-}
 
 function useInViewOnce(threshold = 0.3) {
   const ref = useRef<HTMLElement>(null);
@@ -268,16 +250,6 @@ export function NetworkStatsSection() {
   const { ref, active } = useInViewOnce();
   const { boxRef, bubbleRefs, onPointerMove, onPointerLeave } =
     useGravity(active);
-  // NODES 길이는 stats(7개)에 고정 — 훅 순서 안정성 위해 명시 호출
-  const counts = [
-    useCountUp(NODES[0].value, active),
-    useCountUp(NODES[1].value, active),
-    useCountUp(NODES[2].value, active),
-    useCountUp(NODES[3].value, active),
-    useCountUp(NODES[4].value, active),
-    useCountUp(NODES[5].value, active),
-    useCountUp(NODES[6].value, active),
-  ];
 
   return (
     <section ref={ref} className="-mt-40 bg-background md:-mt-48">
@@ -305,7 +277,7 @@ export function NetworkStatsSection() {
                     className="font-bold leading-none tracking-tight tabular-nums"
                     style={{ fontSize: "clamp(0.85rem,24cqw,3.75rem)" }}
                   >
-                    {counts[i]}
+                    {node.value}
                   </span>
                   <span className="text-[11px] leading-tight opacity-90 md:text-xs">
                     {node.label}
