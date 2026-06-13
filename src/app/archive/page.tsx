@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   },
 };
 import { PageBanner } from "@/src/components/common/PageBanner";
-import { FeaturedStudySection } from "@/src/components/sections/archive/FeaturedStudySection";
-import { StudyArchiveSection } from "@/src/components/sections/archive/StudyArchiveSection";
+import { NetworkStatsSection } from "@/src/components/sections/archive/NetworkStatsSection";
+import { ProgramTimelineSection } from "@/src/components/sections/archive/ProgramTimelineSection";
+import { CommunityLeadsSection } from "@/src/components/sections/archive/CommunityLeadsSection";
 import { TestimonialArchiveSection } from "@/src/components/sections/archive/TestimonialArchiveSection";
-import { LeadListSection } from "@/src/components/sections/archive/LeadListSection";
 import { SITE_LINKS } from "@/src/lib/links";
 
 export default function ArchivePage() {
@@ -29,17 +29,17 @@ export default function ArchivePage() {
         objectPosition="center 45%"
       />
 
-      {/* 1. 대표 스터디 */}
-      <FeaturedStudySection />
+      {/* 1. 네트워크 수치 */}
+      <NetworkStatsSection />
 
-      {/* 2. 전체 스터디 아카이브 (필터 + 정렬) */}
-      <StudyArchiveSection />
+      {/* 2. 프로그램 타임라인 */}
+      <ProgramTimelineSection />
 
-      {/* 3. 후기 모음 */}
+      {/* 3. 함께한 모임 & 리드 */}
+      <CommunityLeadsSection />
+
+      {/* 4. 후기 모음 */}
       <TestimonialArchiveSection />
-
-      {/* 4. 역대 리드 목록 */}
-      <LeadListSection />
 
       <section className="bg-primary py-24 text-on-primary">
         <div className="mx-auto max-w-2xl px-4 text-center md:px-6">
