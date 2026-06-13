@@ -9,7 +9,7 @@ import { SITE_LINKS } from "@/src/lib/links";
 
 const NAV_LINKS = [
   { label: "소개", href: "/about" },
-  { label: "아카이빙", href: "/archive" },
+  { label: "아카이브", href: "/archive" },
 ];
 
 // 상단에 풀블리드 배너/Hero가 있어 헤더가 그 위에 투명하게 떠야 하는 경로
@@ -93,7 +93,11 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <a href={SITE_LINKS.discord} target="_blank" rel="noopener noreferrer">
+          <a
+            href={SITE_LINKS.discord}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button
               size="md"
               className={
@@ -153,7 +157,11 @@ export function Header() {
             </Link>
           ))}
           <div className="mt-2 border-t border-outline-variant pt-3 pb-1">
-            <a href={SITE_LINKS.discord} target="_blank" rel="noopener noreferrer">
+            <a
+              href={SITE_LINKS.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button size="sm" className="w-full">
                 디스코드 입장
               </Button>
