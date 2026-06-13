@@ -22,10 +22,10 @@ function useIsClient(): boolean {
 }
 
 /* ── 카드 ─────────────────────────────────────────────────────── */
-function TestimonialCard({ text, name, affiliation, role }: Testimonial) {
+function TestimonialCard({ id, text, name, affiliation, role }: Testimonial) {
   return (
     <Link
-      href="/archive#testimonials"
+      href={`/archive#testimonial-${id}`}
       draggable={false}
       className="
         group/card relative flex h-[320px] w-[320px] shrink-0 flex-col overflow-hidden rounded-2xl
@@ -104,20 +104,30 @@ function ScrollTrack({ items }: { items: Testimonial[] }) {
       dragStartPos = position;
       dragDistance = 0;
       activePointerId = e.pointerId;
-      container.setPointerCapture(e.pointerId);
-      container.style.cursor = "grabbing";
+      // setPointerCapture는 실제 드래그가 시작된 뒤(onPointerMove)에만 건다.
+      // pointerdown마다 캡처하면 단순 클릭의 링크 네비게이션이 삼켜진다.
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!isDragging) return;
       const dx = e.clientX - dragStartX;
       dragDistance = Math.abs(dx);
+      if (
+        activePointerId !== null &&
+        dragDistance > DRAG_THRESHOLD_PX &&
+        !container.hasPointerCapture(activePointerId)
+      ) {
+        container.setPointerCapture(activePointerId);
+        container.style.cursor = "grabbing";
+      }
       position = dragStartPos - dx;
     };
     const onPointerUp = () => {
       if (!isDragging) return;
       isDragging = false;
       if (activePointerId !== null) {
-        container.releasePointerCapture(activePointerId);
+        if (container.hasPointerCapture(activePointerId)) {
+          container.releasePointerCapture(activePointerId);
+        }
         activePointerId = null;
       }
       container.style.cursor = "";
