@@ -33,14 +33,6 @@ const VMAX = 1900; // 속도 상한
 const SLEEP_V = 4; // 정지 임계
 const SETTLE_STEPS = 480; // reduced-motion 정적 안착 스텝 수
 
-function fontFor(value: number) {
-  if (value >= 200) return "text-3xl md:text-4xl";
-  if (value >= 100) return "text-2xl md:text-3xl";
-  if (value >= 30) return "text-xl md:text-2xl";
-  if (value >= 15) return "text-lg md:text-xl";
-  return "text-base md:text-lg";
-}
-
 function useCountUp(target: number, active: boolean, duration = 1400) {
   const [count, setCount] = useState(0);
   const rafRef = useRef<number>(0);
@@ -291,17 +283,18 @@ export function NetworkStatsSection() {
                   bubbleRefs.current[i] = el;
                 }}
                 className="absolute left-0 top-0 will-change-transform"
-                style={{ width: `${node.r * 2}%` }}
+                style={{ width: `${node.r * 2}%`, containerType: "inline-size" }}
               >
                 <div
                   className={`flex aspect-square w-full flex-col items-center justify-center gap-0.5 rounded-full px-2 text-center ${tone}`}
                 >
                   <span
-                    className={`font-bold leading-none tracking-tight tabular-nums ${fontFor(node.value)}`}
+                    className="font-bold leading-none tracking-tight tabular-nums"
+                    style={{ fontSize: "clamp(0.85rem,24cqw,3.75rem)" }}
                   >
                     {counts[i]}
                   </span>
-                  <span className="text-[10px] leading-tight opacity-90 md:text-[11px]">
+                  <span className="text-[11px] leading-tight opacity-90 md:text-xs">
                     {node.label}
                   </span>
                 </div>
