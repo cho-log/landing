@@ -8,15 +8,32 @@ import { archiveStats } from "@/src/data/stats";
    커서가 가까이 가면 더미를 가볍게 휘젓고 다시 가라앉는다. 새 의존성 없이 단일 rAF 물리 시뮬.
    진입 시 낙하 + count-up. reduced-motion이면 동일 물리를 동기로 돌려 정적 안착(접근성). */
 
-type Kind = "net" | "act";
-/* 네트워크(forest) vs 활동(sage) 색 구분 — 라벨 기준 */
-const NET_LABELS = new Set(["함께한 대학", "리드·멘토", "초록 활동"]);
+/* 초록 그라데이션: 값이 클수록 진한 초록(색 = 크기). 진→연 7단계 램프. */
+const GREEN_RAMP: { bg: string; text: string }[] = [
+  { bg: "bg-primary", text: "text-on-primary" }, // 가장 큰 값
+  { bg: "bg-secondary", text: "text-on-secondary" },
+  { bg: "bg-primary-container", text: "text-white" },
+  { bg: "bg-secondary-container", text: "text-on-secondary-container" },
+  { bg: "bg-primary-fixed-dim", text: "text-on-primary-fixed" },
+  { bg: "bg-primary-fixed", text: "text-on-primary-fixed" },
+  { bg: "bg-secondary-fixed", text: "text-on-secondary-fixed" }, // 가장 작은 값
+];
 
-/* stats 단일 소스에서 파생: 반지름은 값 비례 r = 5.5 + 0.6·√value (가로% 단위) */
-const NODES = archiveStats.items.map((it) => ({
+/* 값 내림차순 랭크(0=최대) → 램프 인덱스. 동률은 안정적으로 입력 순서 유지. */
+const RANK = archiveStats.items
+  .map((it, i) => ({ i, value: it.value }))
+  .sort((a, b) => b.value - a.value || a.i - b.i)
+  .reduce<Record<number, number>>((acc, it, rank) => {
+    acc[it.i] = rank;
+    return acc;
+  }, {});
+
+/* stats 단일 소스에서 파생: 반지름은 값 비례 r = 5.5 + 0.6·√value (가로% 단위),
+   색은 값 순 초록 램프(GREEN_RAMP[랭크]). */
+const NODES = archiveStats.items.map((it, i) => ({
   value: it.value,
   label: it.label,
-  kind: (NET_LABELS.has(it.label) ? "net" : "act") as Kind,
+  tone: GREEN_RAMP[RANK[i]],
   r: 5.5 + 0.6 * Math.sqrt(it.value),
 }));
 
@@ -272,10 +289,6 @@ export function NetworkStatsSection() {
           className="relative mx-auto h-[540px] w-full max-w-[680px] overflow-hidden md:h-[640px]"
         >
           {NODES.map((node, i) => {
-            const tone =
-              node.kind === "net"
-                ? "bg-primary text-on-primary"
-                : "bg-secondary-container text-on-secondary-container";
             return (
               <div
                 key={node.label}
@@ -286,7 +299,7 @@ export function NetworkStatsSection() {
                 style={{ width: `${node.r * 2}%`, containerType: "inline-size" }}
               >
                 <div
-                  className={`flex aspect-square w-full flex-col items-center justify-center gap-0.5 rounded-full px-2 text-center ${tone}`}
+                  className={`flex aspect-square w-full flex-col items-center justify-center gap-0.5 rounded-full px-2 text-center ${node.tone.bg} ${node.tone.text}`}
                 >
                   <span
                     className="font-bold leading-none tracking-tight tabular-nums"
