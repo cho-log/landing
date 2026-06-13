@@ -59,7 +59,7 @@ export function IntroSection() {
           className="mx-auto mt-10 max-w-[24rem] translate-y-8 opacity-0 transition-all delay-150 duration-700 ease-out md:mt-12"
         >
           <Image
-            src="/intro-leaves.png"
+            src="/intro-leaves.webp"
             alt="함께 학습하고 협업하는 초록이 캐릭터 일러스트"
             width={1380}
             height={1100}

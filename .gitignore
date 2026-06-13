@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# 이미지 원본 마스터(커밋하지 않음). public/*.webp 만 커밋한다.
+# 새 이미지 추가 시 여기에 원본을 두고 `npm run optimize:images` 실행.
+/image-sources/
+
 # claude code worktrees
 /.claude/worktrees/
 

@@ -1,16 +1,19 @@
 import Image from "next/image";
 import { Button } from "@/src/components/common/Button";
+import { blur } from "@/src/generated/blur";
 
 export function HeroSection() {
   return (
     <section className="relative flex h-screen min-h-[600px] items-center justify-center">
       {/* 배경 이미지 */}
       <Image
-        src="/hero.png"
+        src="/hero.webp"
         alt=""
         fill
         priority
         sizes="100vw"
+        placeholder="blur"
+        blurDataURL={blur.hero}
         className="object-cover"
         aria-hidden="true"
       />

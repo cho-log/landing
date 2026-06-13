@@ -110,9 +110,9 @@ export function HistorySection() {
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-on-surface md:text-4xl">
               숫자로 보는 초록
             </h2>
-            {/* TODO: 사진 준비되면 /history-growth.png 교체 (초록이 자라나는 과정) */}
+            {/* TODO: 사진 준비되면 image-sources/history-growth.png 교체 후 npm run optimize:images (초록이 자라나는 과정) */}
             <Image
-              src="/history-growth.png"
+              src="/history-growth.webp"
               alt="초록이 자라나는 과정 일러스트"
               width={1200}
               height={900}

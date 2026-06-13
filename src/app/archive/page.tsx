@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   },
 };
 import { PageBanner } from "@/src/components/common/PageBanner";
+import { blur } from "@/src/generated/blur";
 import { NetworkStatsSection } from "@/src/components/sections/archive/NetworkStatsSection";
 import { ProgramTimelineSection } from "@/src/components/sections/archive/ProgramTimelineSection";
 import { CommunityLeadsSection } from "@/src/components/sections/archive/CommunityLeadsSection";
@@ -23,10 +24,11 @@ export default function ArchivePage() {
   return (
     <>
       <PageBanner
-        imageSrc="/archive-banner.JPG"
+        imageSrc="/archive-banner.webp"
         title="아카이브"
         label="ARCHIVE"
         objectPosition="center 45%"
+        blurDataURL={blur["archive-banner"]}
       />
 
       {/* 1. 네트워크 수치 */}

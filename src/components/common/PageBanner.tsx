@@ -6,6 +6,8 @@ interface PageBannerProps {
   label?: string;
   /** CSS object-position 값. 사진의 어느 부분이 보일지 조절. 기본값 "center" */
   objectPosition?: string;
+  /** 로딩 중 보여줄 블러 플레이스홀더 data URL (src/generated/blur.ts) */
+  blurDataURL?: string;
 }
 
 export function PageBanner({
@@ -13,6 +15,7 @@ export function PageBanner({
   title,
   label,
   objectPosition = "center",
+  blurDataURL,
 }: PageBannerProps) {
   return (
     <section className="relative h-[280px] w-full overflow-hidden md:h-[320px]">
@@ -22,6 +25,8 @@ export function PageBanner({
         fill
         priority
         sizes="100vw"
+        placeholder={blurDataURL ? "blur" : "empty"}
+        blurDataURL={blurDataURL}
         className="object-cover"
         style={{ objectPosition }}
         aria-hidden="true"

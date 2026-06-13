@@ -56,7 +56,7 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
         <Link href="/" aria-label="초록 홈" className="flex items-center">
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             alt="초록"
             width={1706}
             height={899}
@@ -64,7 +64,7 @@ export function Header() {
             className={`hidden h-12 w-auto md:block ${transparent ? "drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]" : ""}`}
           />
           <Image
-            src="/logo-square.png"
+            src="/logo-square.webp"
             alt="초록"
             width={112}
             height={112}

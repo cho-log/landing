@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   },
 };
 import { PageBanner } from "@/src/components/common/PageBanner";
+import { blur } from "@/src/generated/blur";
 import { IdentitySection } from "@/src/components/sections/about/IdentitySection";
 import { ActivitiesSection } from "@/src/components/sections/about/ActivitiesSection";
 import { StudyDetailSection } from "@/src/components/sections/about/StudyDetailSection";
@@ -22,10 +23,11 @@ export default function AboutPage() {
   return (
     <>
       <PageBanner
-        imageSrc="/about-banner.jpeg"
+        imageSrc="/about-banner.webp"
         title="초록 소개"
         label="ABOUT"
         objectPosition="center 35%"
+        blurDataURL={blur["about-banner"]}
       />
 
       <IdentitySection />

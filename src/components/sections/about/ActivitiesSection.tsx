@@ -150,7 +150,7 @@ function ActivityCard({ activity }: { activity: Activity }) {
         aria-hidden="true"
       >
         <Image
-          src="/intro-leaves.png"
+          src="/intro-leaves.webp"
           alt=""
           width={1380}
           height={1100}
