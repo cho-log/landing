@@ -9,7 +9,7 @@ export const programs: Program[] = [
   {
     id: "study",
     name: "초록스터디",
-    period: "2023.11 – 현재",
+    period: "2023.11 – now",
     summary: "초록의 출발점이 된 자율 운영 스터디",
     description:
       "검증된 학습 자료와 커뮤니티를 바탕으로, 스터디를 열고 운영할 수 있도록 돕습니다.",
@@ -17,6 +17,18 @@ export const programs: Program[] = [
     metric: "25개 스터디",
     colorKey: "study",
     link: { label: "운영 가이드 보기", href: SITE_LINKS.operationGuide, external: true },
+  },
+  {
+    id: "meetup",
+    name: "초록 밋업",
+    period: "2024.06 – now",
+    summary: "오프라인에서 이어진 배움과 연결",
+    description:
+      "배움과 나눔에 관심 있는 사람들이 서로 교류하고 연결되는 오프라인 행사입니다.",
+    audience: "초록 활동을 한 모든 분들, 초록이 궁금한 모든 분들",
+    metric: "4회 · 누적 170명",
+    colorKey: "meetup",
+    link: { label: "디스코드에서 소식 받기", href: SITE_LINKS.discord, external: true },
   },
   {
     id: "project",
@@ -53,21 +65,9 @@ export const programs: Program[] = [
     link: { label: "디스코드 공지 보기", href: SITE_LINKS.projectAiDiscord, external: true },
   },
   {
-    id: "meetup",
-    name: "초록 밋업",
-    period: "2024 – 현재 · 반기 1회",
-    summary: "오프라인에서 이어진 배움과 연결",
-    description:
-      "배움과 나눔에 관심 있는 사람들이 서로 교류하고 연결되는 오프라인 행사입니다.",
-    audience: "초록 활동을 한 모든 분들, 초록이 궁금한 모든 분들",
-    metric: "4회 · 누적 170명",
-    colorKey: "meetup",
-    link: { label: "디스코드에서 소식 받기", href: SITE_LINKS.discord, external: true },
-  },
-  {
     id: "bootcamp",
     name: "Spring AI 부트캠프",
-    period: "2026.05.06 – 05.20",
+    period: "2026.05 – 2026.05",
     summary: "Spring AI로 챗봇을 만든 2주 집중 과정",
     description: "Spring AI로 고객 지원 챗봇을 직접 만들어보는 2주 집중 과정입니다.",
     audience: "Spring AI를 실습으로 익히고 싶은 분들",
