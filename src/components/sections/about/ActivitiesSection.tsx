@@ -114,7 +114,7 @@ export function ActivitiesSection() {
             <>
               초록에는 다양한 방식으로
               <br />
-              함께 배울 수 있는 활동들이 있습니다.
+              함께 나눌 수 있는 활동들이 있습니다.
             </>
           }
         />
