@@ -66,46 +66,60 @@ function ScrollTrack({ items }: { items: Testimonial[] }) {
     const inner = innerRef.current;
     if (!container || !inner) return;
 
+    // scrollLeft(정수 전용·매 프레임 reflow) 대신 transform으로 구동한다.
+    // 소수 position을 그대로 translate3d에 넣어 서브픽셀 부드러움 + GPU 합성.
     let rafId = 0;
-    // float 누적 — 브라우저는 scrollLeft를 정수로 라운딩하므로,
-    // 소수 누적값을 별도로 유지하고 매 프레임 floor해서 대입한다.
-    let virtualScrollLeft = 0;
+    let position = 0; // 누적 이동량(px), 소수 유지
+    let halfWidth = 0; // inner.scrollWidth / 2 — 매 프레임 읽지 않고 캐시
     let isDragging = false;
     let dragStartX = 0;
-    let dragStartScrollLeft = 0;
+    let dragStartPos = 0;
     let dragDistance = 0;
+    let activePointerId: number | null = null;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const measure = () => {
+      halfWidth = inner.scrollWidth / 2;
+    };
+    measure();
 
     const tick = () => {
-      const halfWidth = inner.scrollWidth / 2;
-      if (halfWidth > 0) {
-        if (!isDragging) {
-          virtualScrollLeft += AUTO_SCROLL_PX_PER_FRAME;
-        }
-        if (virtualScrollLeft >= halfWidth) virtualScrollLeft -= halfWidth;
-        else if (virtualScrollLeft < 0) virtualScrollLeft += halfWidth;
-        container.scrollLeft = Math.floor(virtualScrollLeft);
+      if (!isDragging && !prefersReducedMotion) {
+        position += AUTO_SCROLL_PX_PER_FRAME;
       }
+      if (halfWidth > 0) {
+        if (position >= halfWidth) position -= halfWidth;
+        else if (position < 0) position += halfWidth;
+      }
+      inner.style.transform = `translate3d(${-position}px, 0, 0)`;
       rafId = requestAnimationFrame(tick);
     };
 
     const onPointerDown = (e: PointerEvent) => {
-      // 마우스만 드래그 — 터치는 native scroll 그대로
-      if (e.pointerType !== "mouse") return;
       isDragging = true;
       dragStartX = e.clientX;
-      dragStartScrollLeft = virtualScrollLeft;
+      dragStartPos = position;
       dragDistance = 0;
+      activePointerId = e.pointerId;
+      container.setPointerCapture(e.pointerId);
       container.style.cursor = "grabbing";
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!isDragging) return;
       const dx = e.clientX - dragStartX;
       dragDistance = Math.abs(dx);
-      virtualScrollLeft = dragStartScrollLeft - dx;
+      position = dragStartPos - dx;
     };
     const onPointerUp = () => {
       if (!isDragging) return;
       isDragging = false;
+      if (activePointerId !== null) {
+        container.releasePointerCapture(activePointerId);
+        activePointerId = null;
+      }
       container.style.cursor = "";
     };
 
@@ -117,19 +131,36 @@ function ScrollTrack({ items }: { items: Testimonial[] }) {
       }
     };
 
+    // 트랙패드/휠 가로 스크롤 — 가로 의도일 때만 가로채고 세로 페이지 스크롤은 통과
+    const onWheel = (e: WheelEvent) => {
+      const dx =
+        Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
+      if (dx === 0) return;
+      e.preventDefault();
+      position += dx;
+    };
+
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(inner);
+
     container.addEventListener("pointerdown", onPointerDown);
-    window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("pointerup", onPointerUp);
+    container.addEventListener("pointermove", onPointerMove);
+    container.addEventListener("pointerup", onPointerUp);
+    container.addEventListener("pointercancel", onPointerUp);
     container.addEventListener("click", onClickCapture, true);
+    container.addEventListener("wheel", onWheel, { passive: false });
 
     rafId = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
       container.removeEventListener("pointerdown", onPointerDown);
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerup", onPointerUp);
+      container.removeEventListener("pointermove", onPointerMove);
+      container.removeEventListener("pointerup", onPointerUp);
+      container.removeEventListener("pointercancel", onPointerUp);
       container.removeEventListener("click", onClickCapture, true);
+      container.removeEventListener("wheel", onWheel);
     };
   }, []);
 
@@ -137,12 +168,14 @@ function ScrollTrack({ items }: { items: Testimonial[] }) {
     <div
       ref={containerRef}
       className="
-        cursor-grab select-none overflow-x-auto
-        [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+        cursor-grab select-none overflow-hidden [touch-action:pan-y]
         [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]
       "
     >
-      <div ref={innerRef} className="flex gap-5 py-2 [width:max-content]">
+      <div
+        ref={innerRef}
+        className="flex gap-5 py-2 [width:max-content] [will-change:transform]"
+      >
         {doubled.map((item, i) => (
           <TestimonialCard key={`${item.id}-${i}`} {...item} />
         ))}
