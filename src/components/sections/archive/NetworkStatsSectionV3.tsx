@@ -30,7 +30,7 @@ const NODES: {
   { value: 33, label: "리드·멘토", kind: "net", cx: 22, cy: 14, r: 8.95 },
   { value: 25, label: "개설된 스터디", kind: "act", cx: 16, cy: 68, r: 8.5 },
   { value: 15, label: "함께한 대학", kind: "net", cx: 40, cy: 12, r: 7.82 },
-  { value: 6, label: "초록 자체 프로그램", kind: "net", cx: 86, cy: 44, r: 6.97 },
+  { value: 6, label: "초록 활동", kind: "net", cx: 86, cy: 44, r: 6.97 },
 ];
 
 const R_MIN = 6.97;

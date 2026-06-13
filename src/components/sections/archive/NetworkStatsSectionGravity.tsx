@@ -28,7 +28,7 @@ const NODES: {
   { value: 33, label: "리드·멘토", kind: "net", r: 8.95, cx: 22, cy: 14 },
   { value: 25, label: "개설된 스터디", kind: "act", r: 8.5, cx: 16, cy: 68 },
   { value: 15, label: "함께한 대학", kind: "net", r: 7.82, cx: 40, cy: 12 },
-  { value: 6, label: "초록 자체 프로그램", kind: "net", r: 6.97, cx: 86, cy: 44 },
+  { value: 6, label: "초록 활동", kind: "net", r: 6.97, cx: 86, cy: 44 },
 ];
 
 /* 물리 튜닝 상수 */
@@ -287,7 +287,7 @@ export function NetworkStatsSectionGravity() {
           ref={boxRef}
           onPointerMove={onPointerMove}
           onPointerLeave={onPointerLeave}
-          className="relative mx-auto mt-8 aspect-[100/78] w-full max-w-[560px] overflow-hidden"
+          className="relative mx-auto mt-8 aspect-[100/62] w-full max-w-[680px] overflow-hidden"
         >
           {NODES.map((node, i) => {
             const tone =
