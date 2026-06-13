@@ -30,7 +30,7 @@ const ACTIVITIES: Activity[] = [
     bgClass: "bg-primary-container",
     textClass: "text-on-primary-container",
     link: { label: "자세히 보기", href: "#study-detail", external: false },
-    spanClass: "md:col-span-2 md:row-span-2 md:min-h-[420px]",
+    spanClass: "md:col-span-3 md:row-span-2 md:min-h-[420px]",
   },
   {
     name: "초록해듀오",
@@ -42,6 +42,34 @@ const ACTIVITIES: Activity[] = [
       label: "초록스터디 자료 함께 사용",
       href: "#study-detail",
       external: false,
+    },
+    spanClass: "md:col-span-3 md:min-h-[200px]",
+  },
+  {
+    name: "초록 밋업",
+    status: "periodic",
+    description:
+      "배움과 나눔에 관심 있는 사람들을 위한 오프라인 교류의 장입니다.",
+    bgClass: "bg-secondary-container",
+    textClass: "text-on-secondary-container",
+    link: {
+      label: "디스코드에서 소식 받기",
+      href: SITE_LINKS.discord,
+      external: true,
+    },
+    spanClass: "md:col-span-3 md:min-h-[200px]",
+  },
+  {
+    name: "초록 프로젝트",
+    status: "irregular",
+    description:
+      "기획부터 기능 개발, 부하 테스트까지 프로덕트를 만드는 전 과정을 경험할 수 있도록 멘토링을 제공합니다.",
+    bgClass: "bg-build-container",
+    textClass: "text-on-build-container",
+    link: {
+      label: "디스코드 공지 보기",
+      href: SITE_LINKS.projectDiscord,
+      external: true,
     },
     spanClass: "md:col-span-2 md:min-h-[200px]",
   },
@@ -70,21 +98,7 @@ const ACTIVITIES: Activity[] = [
       href: SITE_LINKS.springAiBootcamp,
       external: true,
     },
-    spanClass: "md:col-span-1 md:min-h-[200px]",
-  },
-  {
-    name: "초록 밋업",
-    status: "periodic",
-    description:
-      "배움과 나눔에 관심 있는 사람들을 위한 오프라인 교류의 장입니다.",
-    bgClass: "bg-secondary-container",
-    textClass: "text-on-secondary-container",
-    link: {
-      label: "디스코드에서 소식 받기",
-      href: SITE_LINKS.discord,
-      external: true,
-    },
-    spanClass: "md:col-span-3 md:min-h-[200px]",
+    spanClass: "md:col-span-2 md:min-h-[200px]",
   },
 ];
 
@@ -98,7 +112,7 @@ export function ActivitiesSection() {
           함께 배울 수 있는 활동들이 있습니다.
         </h2>
 
-        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-5">
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6 md:gap-5">
           {ACTIVITIES.map((activity) => (
             <ActivityCard key={activity.name} activity={activity} />
           ))}

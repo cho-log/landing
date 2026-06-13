@@ -124,7 +124,8 @@
   --color-on-error-container: #93000a;
 
   /* ── Category accents (dusty 톤으로 재정의 — DESIGN.md muted 무드 정합) ─── */
-  /* duo = 초록해듀오, project = 초록프로젝트. 카테고리 식별용으로만 사용. */
+  /* duo = 초록해듀오, project = 초록 프로젝트 with AI, build = 초록 프로젝트.
+     카테고리 식별용으로만 사용. */
   --color-duo: #7a6a8c;
   --color-duo-container: #ece4f1;
   --color-on-duo-container: #4a3f5c;
@@ -132,6 +133,10 @@
   --color-project: #a86b4a;
   --color-project-container: #f3e3d6;
   --color-on-project-container: #6b3f23;
+
+  --color-build: #6f8197;
+  --color-build-container: #dbe3ec;
+  --color-on-build-container: #3c4658;
 
   /* ── Animations ──────────────────────────────────────────────── */
   --animate-scroll-left: scroll-left 35s linear infinite;

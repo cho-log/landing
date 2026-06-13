@@ -48,6 +48,15 @@ colors:
   background: "#fbf9f8"
   on-background: "#1b1c1c"
   surface-variant: "#e4e2e1"
+  duo: "#7a6a8c"
+  duo-container: "#ece4f1"
+  on-duo-container: "#4a3f5c"
+  project: "#a86b4a"
+  project-container: "#f3e3d6"
+  on-project-container: "#6b3f23"
+  build: "#6f8197"
+  build-container: "#dbe3ec"
+  on-build-container: "#3c4658"
 typography:
   display-lg:
     fontFamily: >
