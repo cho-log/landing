@@ -1,22 +1,24 @@
-export interface Study {
+/** 초록이 운영해온 프로그램 (아카이브 타임라인용) */
+export interface Program {
   id: string;
   name: string;
-  season: number;        // 기수 (예: 7)
-  duration: string;      // 예: "2024.03 – 2024.06"
-  leadCount: number;
-  memberCount: number;
-  tags: string[];        // 예: ["알고리즘", "자바", "코드리뷰"]
-  retrospectiveUrl?: string;  // 회고 노션 or 블로그 링크
-  githubUrl?: string;         // 스터디 GitHub 레포
+  period: string;        // 예: "2023.11 – 현재"
+  description: string;   // 소개 문구
+  audience?: string;     // 대상
+  metric?: string;       // 규모 (예: "25개 스터디", "누적 170명")
+  colorKey: "study" | "project" | "duo" | "projectAi" | "meetup" | "bootcamp";
+  link?: { label: string; href: string; external?: boolean };
 }
 
+/** 역대 스터디 리드 + 초록해듀오 멘토 */
 export interface Lead {
   id: string;
   name: string;
-  studyName: string;   // 어느 스터디의 리드인지
-  season: number;
-  blogUrl?: string;
-  githubUrl?: string;
+  community: string;       // 소속/모임 (예: "그리디", "SCG", "초록해듀오")
+  university?: string;     // 대학 (해듀오·연합은 없음)
+  year: number;            // 활동 연도 (2024 | 2025 | 2026)
+  githubUrl: string;
+  role: "lead" | "mentor"; // 초록해듀오 = mentor, 나머지 = lead
 }
 
 export type TestimonialRole = "스터디 리드" | "스터디원" | "리뷰어";
