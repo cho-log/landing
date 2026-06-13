@@ -1,7 +1,8 @@
 import { leads } from "@/src/data/leads";
 import type { Lead } from "@/src/types";
+import { LeadAvatar } from "./LeadAvatar";
 
-/* ── 연도별 그룹핑 (최신 연도 먼저, 그룹 내 소속→이름 정렬) ──────── */
+/* ── 연도별 그룹핑 (최신 연도 먼저, 그룹 내 이름 가나다순 정렬) ──── */
 function groupByYear(list: Lead[]): [number, Lead[]][] {
   const map = new Map<number, Lead[]>();
   for (const lead of list) {
@@ -9,11 +10,7 @@ function groupByYear(list: Lead[]): [number, Lead[]][] {
     map.get(lead.year)!.push(lead);
   }
   for (const group of map.values()) {
-    group.sort(
-      (a, b) =>
-        a.community.localeCompare(b.community, "ko") ||
-        a.name.localeCompare(b.name, "ko"),
-    );
+    group.sort((a, b) => a.name.localeCompare(b.name, "ko"));
   }
   return Array.from(map.entries()).sort((a, b) => b[0] - a[0]);
 }
@@ -31,9 +28,7 @@ function LeadCard({ lead }: { lead: Lead }) {
       className="group flex items-center justify-between gap-3 rounded-md border border-outline-variant bg-surface-container-lowest px-4 py-3 transition-colors hover:border-secondary-fixed-dim hover:bg-secondary-container/40"
     >
       <div className="flex min-w-0 items-center gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary-container text-sm font-bold text-on-secondary-container">
-          {lead.name[0]}
-        </div>
+        <LeadAvatar name={lead.name} githubUrl={lead.githubUrl} />
         <div className="min-w-0">
           <div className="flex items-center gap-1.5">
             <p className="truncate text-sm font-semibold text-on-surface">
