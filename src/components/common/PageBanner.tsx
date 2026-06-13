@@ -18,7 +18,7 @@ export function PageBanner({
   blurDataURL,
 }: PageBannerProps) {
   return (
-    <section className="relative h-[280px] w-full overflow-hidden md:h-[320px]">
+    <section className="relative z-20 h-[280px] w-full overflow-hidden md:h-[320px]">
       <Image
         src={imageSrc}
         alt=""

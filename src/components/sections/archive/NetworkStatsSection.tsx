@@ -8,8 +8,6 @@ import { archiveStats } from "@/src/data/stats";
    커서가 가까이 가면 더미를 가볍게 휘젓고 다시 가라앉는다. 새 의존성 없이 단일 rAF 물리 시뮬.
    진입 시 낙하 + count-up. reduced-motion이면 동일 물리를 동기로 돌려 정적 안착(접근성). */
 
-const INTRO = "2023년 11월부터, 초록은 이만큼 넓어졌습니다.";
-
 type Kind = "net" | "act";
 /* 네트워크(forest) vs 활동(sage) 색 구분 — 라벨 기준 */
 const NET_LABELS = new Set(["함께한 대학", "리드·멘토", "초록 활동"]);
@@ -273,17 +271,13 @@ export function NetworkStatsSection() {
   ];
 
   return (
-    <section ref={ref} className="bg-background py-20 md:py-24">
+    <section ref={ref} className="-mt-40 bg-background md:-mt-48">
       <div className="mx-auto max-w-5xl px-4 md:px-6">
-        <p className="text-center text-base text-on-surface-variant md:text-lg">
-          {INTRO}
-        </p>
-
         <div
           ref={boxRef}
           onPointerMove={onPointerMove}
           onPointerLeave={onPointerLeave}
-          className="relative mx-auto mt-8 aspect-[100/62] w-full max-w-[680px] overflow-hidden"
+          className="relative mx-auto h-[540px] w-full max-w-[680px] overflow-hidden md:h-[640px]"
         >
           {NODES.map((node, i) => {
             const tone =
@@ -316,7 +310,7 @@ export function NetworkStatsSection() {
           })}
         </div>
 
-        <p className="mt-4 text-right text-xs text-outline">
+        <p className="mt-3 text-right text-xs text-outline">
           {archiveStats.asOf} 기준
         </p>
       </div>
