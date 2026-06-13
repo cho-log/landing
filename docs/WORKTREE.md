@@ -41,12 +41,15 @@ claude --worktree "#1234"
    (지난번 "배경색 교차"가 롤백된 게 정확히 이 케이스 — 커밋 안 한 작업이 사라졌다.)
 2. **브랜치 네이밍**: `worktree-<작업명>` 이 자동 생성된다. 작업명은 짧고 명확하게 (`bg-alternating`, `hero-redesign`).
 3. **`.env.local` 등 gitignore된 파일이 워크트리에도 필요하면** 루트에 `.worktreeinclude` 파일을 만들어 (`.gitignore` 문법) 거기 적는다. gitignore된 파일만 복사 대상.
-4. **작업이 끝나 메인에 머지했으면** 워크트리를 정리한다:
+4. **머지는 선형으로 (rebase → ff).** 워크트리 브랜치는 보통 로컬 전용·단명(클로드 세션 격리용)이다. 메인에 합칠 땐 **먼저 `main` 최신 위로 rebase한 뒤 `--ff-only` 머지**해서 머지 커밋·분기 없이 일직선을 유지한다. 병렬 작업 중 메인이 그새 움직여도 이렇게 하면 깔끔하다.
+   - ⚠️ 단, 브랜치가 **이미 원격에 push**됐으면 rebase는 히스토리 재작성이라 위험 → 그땐 일반 머지.
+   - 이 마무리(미커밋 확인 → rebase → ff 머지 → 정리)는 **`/worktree-done` 스킬**로 한 번에 할 수 있다.
+5. **머지한 뒤** 워크트리를 정리한다:
    ```bash
    git worktree remove .claude/worktrees/<이름>
    git branch -d worktree-<이름>
    ```
-5. 비대화식(`claude -p ...`) 실행은 자동 정리를 건너뛰므로 수동으로 `git worktree remove` 한다.
+6. 비대화식(`claude -p ...`) 실행은 자동 정리를 건너뛰므로 수동으로 `git worktree remove` 한다.
 
 ---
 
@@ -62,10 +65,16 @@ claude --worktree feature-b
 # 3. 작업 B 끝 → 워크트리 안에서 커밋 후 종료
 #    (Claude한테 /commit 시키거나 직접 git commit)
 
-# 4. 메인으로 와서 머지
-git merge worktree-feature-b
+# 4. 워크트리 안에서 main 최신 위로 rebase (분기 해소 → 선형)
+git rebase main
 
-# 5. 워크트리 정리
+# 5. 메인으로 와서 fast-forward 머지 (머지 커밋 없음)
+git checkout main          # 또는 워크트리에서 ExitWorktree
+git merge --ff-only worktree-feature-b
+
+# 6. 워크트리 정리
 git worktree remove .claude/worktrees/feature-b
 git branch -d worktree-feature-b
 ```
+
+> 위 4~6단계는 `/worktree-done` 스킬이 안전 검사(미커밋·원격 push 여부)까지 포함해 자동으로 처리한다.
