@@ -16,6 +16,9 @@ type Activity = {
   name: string;
   status: Status;
   description: string;
+  image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   bgClass: string;
   textClass: string;
   link?: CardLink;
@@ -28,6 +31,9 @@ const ACTIVITIES: Activity[] = [
     status: "active",
     description:
       "검증된 학습 자료와 커뮤니티를 바탕으로, 스터디를 열고 운영할 수 있도록 돕습니다.",
+    image: "/activities-study.webp",
+    imageWidth: 993,
+    imageHeight: 943,
     bgClass: "bg-primary-container",
     textClass: "text-on-primary-container",
     link: { label: "자세히 보기", href: "#study-detail", external: false },
@@ -37,6 +43,9 @@ const ACTIVITIES: Activity[] = [
     name: "초록해듀오",
     status: "irregular",
     description: "우아한테크코스 수료생 멘토를 매칭받아 학습하는 스터디입니다.",
+    image: "/activities-duo.webp",
+    imageWidth: 1023,
+    imageHeight: 641,
     bgClass: "bg-duo-container",
     textClass: "text-on-duo-container",
     link: {
@@ -51,6 +60,9 @@ const ACTIVITIES: Activity[] = [
     status: "periodic",
     description:
       "배움과 나눔에 관심 있는 사람들을 위한 오프라인 교류의 장입니다.",
+    image: "/activities-meetup.webp",
+    imageWidth: 1322,
+    imageHeight: 755,
     bgClass: "bg-secondary-container",
     textClass: "text-on-secondary-container",
     link: {
@@ -157,10 +169,10 @@ function ActivityCard({ activity }: { activity: Activity }) {
         aria-hidden="true"
       >
         <Image
-          src="/intro-leaves.webp"
+          src={activity.image ?? "/intro-leaves.webp"}
           alt=""
-          width={1380}
-          height={1100}
+          width={activity.imageWidth ?? 1380}
+          height={activity.imageHeight ?? 1100}
           sizes={
             isHero
               ? "(min-width: 768px) 24rem, 50vw"
