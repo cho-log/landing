@@ -166,7 +166,7 @@ const JOIN_STEPS: JoinStep[] = [
       <>
         <InlineLink href={SITE_LINKS.operationGuide}>운영 가이드</InlineLink>와{" "}
         <InlineLink href={SITE_LINKS.cholockDocsManage}>운영 매뉴얼</InlineLink>
-        을 참고해 스터디를 계획한 후, 구글폼으로 개설을 신청합니다.
+        을 참고해 스터디를 계획한 후, 아래 신청 버튼을 눌러 개설을 신청합니다.
       </>
     ),
   },
