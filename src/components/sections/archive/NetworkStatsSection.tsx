@@ -88,6 +88,10 @@ function useGravity(active: boolean) {
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    // 모바일(< md): 좁은 폭 과밀 + 영구 rAF 루프로 버벅이므로 정적 안착으로 렌더.
+    // 터치는 커서 stir 이점도 없어 정적이 자연스럽다.
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const isStatic = reduce || isMobile;
 
     const radPx = (W: number) => NODES.map((n) => (n.r / 100) * W);
     const mass = NODES.map((n) => n.r * n.r);
@@ -205,8 +209,8 @@ function useGravity(active: boolean) {
       }
     };
 
-    // reduced-motion: 애니메이션 없이 동기로 안착시킨 뒤 한 번만 배치
-    if (reduce) {
+    // reduced-motion / 모바일: 애니메이션 없이 동기로 안착시킨 뒤 한 번만 배치(rAF 루프 미시작 → 정적)
+    if (isStatic) {
       for (let s = 0; s < SETTLE_STEPS; s++) step(1 / 60, null);
       apply();
       return;
@@ -254,7 +258,7 @@ export function NetworkStatsSection() {
 
   return (
     <section ref={ref} className="-mt-40 bg-background md:-mt-48">
-      <div className="mx-auto max-w-5xl px-4 md:px-6">
+      <div className="relative mx-auto max-w-5xl px-4 md:px-6">
         <div
           ref={boxRef}
           onPointerMove={onPointerMove}
@@ -289,7 +293,7 @@ export function NetworkStatsSection() {
           })}
         </div>
 
-        <p className="mt-3 text-right text-xs text-outline">
+        <p className="pointer-events-none absolute bottom-0 right-4 text-xs text-outline md:right-6">
           {archiveStats.asOf} 기준
         </p>
       </div>
