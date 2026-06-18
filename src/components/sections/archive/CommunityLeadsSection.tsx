@@ -16,10 +16,8 @@ function groupByYear(list: Lead[]): [number, Lead[]][] {
   return Array.from(map.entries()).sort((a, b) => b[0] - a[0]);
 }
 
-/* ── 리드/멘토 카드 ──────────────────────────────────────────── */
+/* ── 리드 카드 ───────────────────────────────────────────────── */
 function LeadCard({ lead }: { lead: Lead }) {
-  const isMentor = lead.role === "mentor";
-
   return (
     <a
       href={lead.githubUrl}
@@ -31,16 +29,9 @@ function LeadCard({ lead }: { lead: Lead }) {
       <div className="flex min-w-0 items-center gap-3">
         <LeadAvatar name={lead.name} githubUrl={lead.githubUrl} />
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5">
-            <p className="truncate text-sm font-semibold text-on-surface">
-              {lead.name}
-            </p>
-            {isMentor && (
-              <span className="shrink-0 rounded-full bg-duo/10 px-1.5 py-0.5 text-[10px] font-semibold text-duo">
-                멘토
-              </span>
-            )}
-          </div>
+          <p className="truncate text-sm font-semibold text-on-surface">
+            {lead.name}
+          </p>
           <p className="truncate text-xs text-outline">
             {lead.community}
             {lead.university ? ` · ${lead.university}` : ""}

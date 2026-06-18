@@ -38,4 +38,5 @@ export const leads: Lead[] = [
   { id: "l-31", name: "오지훈", community: "초록해듀오", year: 2025, githubUrl: "https://github.com/Ohzzi", role: "mentor" },
   { id: "l-32", name: "전석진", community: "초록해듀오", year: 2025, githubUrl: "https://github.com/seokjin8678", role: "mentor" },
   { id: "l-33", name: "한혜리", community: "초록해듀오", year: 2025, githubUrl: "https://github.com/RIANAEH", role: "mentor" },
+  { id: "l-34", name: "신동훈", community: "SPICY", university: "충남대", year: 2024, githubUrl: "https://github.com/shin-mallang", role: "lead" },
 ];

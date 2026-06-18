@@ -139,8 +139,8 @@ const MISSION_GROUPS: MissionGroup[] = [
     layout: "single",
     items: [
       {
-        emoji: "🎬",
-        label: "영화 리뷰 미션",
+        emoji: "🍲",
+        label: "점심 뭐 먹지 미션",
         href: SITE_LINKS.reactMovieReviewMission,
       },
     ],
