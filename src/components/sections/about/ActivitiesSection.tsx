@@ -37,7 +37,7 @@ const ACTIVITIES: Activity[] = [
     bgClass: "bg-primary-container",
     textClass: "text-on-primary-container",
     link: { label: "자세히 보기", href: "#study-detail", external: false },
-    spanClass: "md:col-span-3 md:row-span-2 md:min-h-[420px]",
+    spanClass: "md:col-span-3 md:row-span-2 md:min-h-[460px]",
   },
   {
     name: "초록해듀오",
@@ -53,7 +53,7 @@ const ACTIVITIES: Activity[] = [
       href: "#study-detail",
       external: false,
     },
-    spanClass: "md:col-span-3 md:min-h-[200px]",
+    spanClass: "md:col-span-3 md:min-h-[220px]",
   },
   {
     name: "초록 밋업",
@@ -70,7 +70,7 @@ const ACTIVITIES: Activity[] = [
       href: SITE_LINKS.discord,
       external: true,
     },
-    spanClass: "md:col-span-3 md:min-h-[200px]",
+    spanClass: "md:col-span-3 md:min-h-[220px]",
   },
   {
     name: "초록 프로젝트",
@@ -84,7 +84,7 @@ const ACTIVITIES: Activity[] = [
       href: SITE_LINKS.projectDiscord,
       external: true,
     },
-    spanClass: "md:col-span-2 md:min-h-[200px]",
+    spanClass: "md:col-span-2 md:min-h-[220px]",
   },
   {
     name: "초록 프로젝트 with AI",
@@ -98,7 +98,7 @@ const ACTIVITIES: Activity[] = [
       href: SITE_LINKS.projectAiDiscord,
       external: true,
     },
-    spanClass: "md:col-span-2 md:min-h-[200px]",
+    spanClass: "md:col-span-2 md:min-h-[220px]",
   },
   {
     name: "Spring AI 부트캠프",
@@ -111,7 +111,7 @@ const ACTIVITIES: Activity[] = [
       href: SITE_LINKS.springAiBootcamp,
       external: true,
     },
-    spanClass: "md:col-span-2 md:min-h-[200px]",
+    spanClass: "md:col-span-2 md:min-h-[220px]",
   },
 ];
 
@@ -175,17 +175,17 @@ function ActivityCard({ activity }: { activity: Activity }) {
           height={activity.imageHeight ?? 1100}
           sizes={
             isHero
-              ? "(min-width: 768px) 24rem, 50vw"
+              ? "(min-width: 768px) 20rem, 50vw"
               : "(min-width: 768px) 12rem, 40vw"
           }
-          className={`h-auto w-full transition-transform duration-500 ease-out group-hover:scale-105 ${
-            isHero ? "max-w-[16rem]" : "max-w-[10rem]"
+          className={`h-auto w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105 ${
+            isHero ? "max-h-[12rem] max-w-[13rem]" : "max-h-[6.5rem] max-w-[9rem]"
           }`}
         />
       </div>
 
       <div
-        className={`mt-auto flex flex-col gap-3 transition-all duration-300 ease-out md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100`}
+        className="mt-auto flex flex-col gap-3"
       >
         <p
           className={`leading-relaxed ${
