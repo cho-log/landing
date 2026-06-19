@@ -185,7 +185,7 @@ function ActivityCard({ activity }: { activity: Activity }) {
       </div>
 
       <div
-        className="mt-auto flex flex-col gap-3"
+        className={`mt-auto flex flex-col ${isHero ? "gap-3" : "gap-1.5"}`}
       >
         <p
           className={`leading-relaxed ${
