@@ -3,7 +3,7 @@ import "./globals.css";
 import { Header } from "@/src/components/common/Header";
 import { Footer } from "@/src/components/common/Footer";
 
-const SITE_URL = "https://cho-log.github.io/landing";
+const SITE_URL = "https://cho-log.github.io";
 const OG_IMAGE = `${SITE_URL}/og-image.png`; // public/og-image.png 파일 필요
 
 export const metadata: Metadata = {
