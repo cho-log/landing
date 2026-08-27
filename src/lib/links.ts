@@ -20,6 +20,6 @@ export const SITE_LINKS = {
   javaLottoMission: "https://github.com/next-step/java-lotto-clean-playground",
   javaLadderMission: "https://github.com/next-step/java-ladder-func-playground",
   springRoomEscapeMission:
-    "https://github.com/cho-log/cholog-docs/tree/main/codereview",
+    "https://github.com/next-step/spring-basic-roomescape-playground",
   reactMovieReviewMission: "https://github.com/cho-log/self-paced-react",
 } as const;
