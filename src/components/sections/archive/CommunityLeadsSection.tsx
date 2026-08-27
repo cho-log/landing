@@ -16,6 +16,13 @@ function groupByYear(list: Lead[]): [number, Lead[]][] {
   return Array.from(map.entries()).sort((a, b) => b[0] - a[0]);
 }
 
+/* ── 역할 라벨 ───────────────────────────────────────────────── */
+const ROLE_LABEL: Record<Lead["role"], string> = {
+  lead: "리드",
+  mentor: "멘토",
+  reviewer: "리뷰어",
+};
+
 /* ── 리드 카드 ───────────────────────────────────────────────── */
 function LeadCard({ lead }: { lead: Lead }) {
   return (
@@ -34,7 +41,8 @@ function LeadCard({ lead }: { lead: Lead }) {
           </p>
           <p className="truncate text-xs text-outline">
             {lead.community}
-            {lead.university ? ` · ${lead.university}` : ""}
+            {lead.university ? `(${lead.university})` : ""}
+            {` ・${ROLE_LABEL[lead.role]}`}
           </p>
         </div>
       </div>
@@ -54,8 +62,8 @@ export function CommunityLeadsSection() {
       <div className="mx-auto max-w-5xl px-4 md:px-6">
         <SectionHeader
           eyebrow="PEOPLE"
-          title="함께한 모임 & 리드"
-          description="스터디를 이끈 사람들"
+          title="함께한 모임 & 사람들"
+          description="스터디를 이끈 리드와 함께 도운 리뷰어"
         />
 
         <div className="mt-10 flex flex-col gap-10">

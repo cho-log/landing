@@ -1,8 +1,8 @@
 import type { Lead } from "@/src/types";
 
 /**
- * 역대 스터디 리드 + 초록해듀오 멘토.
- * community = 소속/모임, university = 대학(해듀오·연합은 없음), role = lead | mentor.
+ * 역대 스터디 리드 + 초록해듀오 멘토 + 스터디 리뷰어.
+ * community = 소속/모임, university = 대학(해듀오·연합은 없음), role = lead | mentor | reviewer.
  */
 export const leads: Lead[] = [
   { id: "l-01", name: "최진영", community: "초록해듀오", year: 2024, githubUrl: "https://github.com/jinyoungchoi95", role: "mentor" },
@@ -39,4 +39,30 @@ export const leads: Lead[] = [
   { id: "l-32", name: "전석진", community: "초록해듀오", year: 2025, githubUrl: "https://github.com/seokjin8678", role: "mentor" },
   { id: "l-33", name: "한혜리", community: "초록해듀오", year: 2025, githubUrl: "https://github.com/RIANAEH", role: "mentor" },
   { id: "l-34", name: "신동훈", community: "SPICY", university: "충남대", year: 2024, githubUrl: "https://github.com/shin-mallang", role: "lead" },
+
+  /* ── 2026.06 설문(구글폼) 취합 신규 인원 ─────────────────────── */
+  // 신규 리드
+  { id: "l-35", name: "남해윤", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/haeyoon1", role: "lead" },
+  { id: "l-36", name: "이승용", community: "그리디", university: "세종대", year: 2024, githubUrl: "https://github.com/kokodak", role: "lead" },
+  { id: "l-37", name: "원태연", community: "그리디", university: "세종대", year: 2024, githubUrl: "https://github.com/TaeyeonRoyce", role: "lead" },
+  { id: "l-38", name: "김주환", community: "그리디", university: "세종대", year: 2024, githubUrl: "https://github.com/3Juhwan", role: "lead" },
+  { id: "l-39", name: "김범수", community: "그리디", university: "세종대", year: 2024, githubUrl: "https://github.com/Indigochi1d", role: "lead" },
+  { id: "l-40", name: "김주환", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/3Juhwan", role: "lead" },
+  { id: "l-41", name: "안금서", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/goldm0ng", role: "lead" },
+  { id: "l-42", name: "정상희", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/SANGHEEJEONG", role: "lead" },
+  { id: "l-43", name: "송혜정", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/Songhyejeong", role: "lead" },
+  { id: "l-44", name: "김범수", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/Indigochi1d", role: "lead" },
+  { id: "l-45", name: "신혜빈", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/c0mpuTurtle", role: "lead" },
+  { id: "l-46", name: "임규영", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/gxuoo", role: "lead" },
+  { id: "l-47", name: "박찬빈", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/INSANE-P", role: "lead" },
+  { id: "l-48", name: "신지우", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/zldn109", role: "lead" },
+  // 신규 리뷰어
+  { id: "l-49", name: "김의천", community: "그리디", university: "세종대", year: 2024, githubUrl: "https://github.com/wzrabbit", role: "reviewer" },
+  { id: "l-50", name: "허준기", community: "BCSDLab", university: "한국기술교육대", year: 2024, githubUrl: "https://github.com/dradnats1012", role: "reviewer" },
+  { id: "l-51", name: "최혜령", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/HyeryongChoi", role: "reviewer" },
+  { id: "l-52", name: "정다빈", community: "그리디", university: "세종대", year: 2025, githubUrl: "https://github.com/70825", role: "reviewer" },
+  { id: "l-53", name: "이창근", community: "SCG", university: "성균관대", year: 2026, githubUrl: "https://github.com/dompoo", role: "reviewer" },
+  { id: "l-54", name: "조상준", community: "그리디", university: "세종대", year: 2026, githubUrl: "https://github.com/sangjun121", role: "reviewer" },
+  { id: "l-55", name: "김준영", community: "SCG", university: "성균관대", year: 2026, githubUrl: "https://github.com/kjyyjk", role: "reviewer" },
+  { id: "l-56", name: "이승연", community: "SCG", university: "성균관대", year: 2026, githubUrl: "https://github.com/nourzoo", role: "reviewer" },
 ];
