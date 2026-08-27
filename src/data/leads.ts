@@ -65,4 +65,5 @@ export const leads: Lead[] = [
   { id: "l-54", name: "조상준", community: "그리디", university: "세종대", year: 2026, githubUrl: "https://github.com/sangjun121", role: "reviewer" },
   { id: "l-55", name: "김준영", community: "SCG", university: "성균관대", year: 2026, githubUrl: "https://github.com/kjyyjk", role: "reviewer" },
   { id: "l-56", name: "이승연", community: "SCG", university: "성균관대", year: 2026, githubUrl: "https://github.com/nourzoo", role: "reviewer" },
+  { id: "l-57", name: "손준형", community: "SCG", university: "성균관대", year: 2026, githubUrl: "https://github.com/sonjh919", role: "reviewer" },
 ];
