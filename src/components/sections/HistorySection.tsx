@@ -7,7 +7,7 @@ import { SectionHeader } from "@/src/components/common/SectionHeader";
 
 const STATS = [
   { value: 434, label: "디스코드 멤버" },
-  { value: 246, label: "미션 PR 제출자" },
+  { value: 246, label: "역대 미션 참가자" },
   { value: 25, label: "개설된 스터디 수" },
   { value: 170, label: "역대 밋업 참여" },
 ];

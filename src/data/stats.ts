@@ -12,7 +12,7 @@ export const archiveStats = {
     { value: 33, label: "리드·멘토" }, // 스터디 리드 29 + 초록해듀오 멘토 4
     { value: 6, label: "초록 활동" }, // 구 "운영 프로그램"에서 리네임
     { value: 434, label: "디스코드 멤버" },
-    { value: 246, label: "미션 PR 제출자" },
+    { value: 246, label: "역대 미션 참가자" },
     { value: 170, label: "역대 밋업 참여" },
     { value: 25, label: "개설된 스터디" },
   ],
