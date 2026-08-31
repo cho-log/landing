@@ -523,7 +523,7 @@ export const leads: Lead[] = [
     community: "SCG",
     university: "성균관대",
     year: 2026,
-    githubUrl: "https://github.com/sonjh919",
+    githubUrl: "https://github.com/seaniiio",
     role: "reviewer",
   },
 ];
