@@ -561,4 +561,13 @@ export const leads: Lead[] = [
     githubUrl: "https://github.com/quddaz",
     role: "reviewer",
   },
+  {
+    id: "l-63",
+    name: "송제용",
+    community: "SCG",
+    university: "성균관대",
+    year: 2026,
+    githubUrl: "https://github.com/jeyongsong",
+    role: "reviewer",
+  },
 ];
